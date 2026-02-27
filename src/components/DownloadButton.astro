@@ -1,17 +1,25 @@
 ---
+import { getLatestDownloadUrl } from '../lib/version';
+
 interface Props {
   size?: 'md' | 'lg';
   label?: string;
   class?: string;
+  href?: string;
 }
 
 const {
   size = 'lg',
   label = 'Download for Mac — Free',
   class: className = '',
+  href,
 } = Astro.props;
 
-const downloadUrl = import.meta.env.LAGOS_DOWNLOAD_URL ?? '#download';
+const downloadUrl =
+  href ??
+  import.meta.env.LAGOS_DOWNLOAD_URL ??
+  (await getLatestDownloadUrl()) ??
+  'https://github.com/rKalb/lagos-releases/releases/latest';
 
 const sizeClasses = {
   md: 'px-6 py-3 text-sm gap-2',
