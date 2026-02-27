@@ -1,5 +1,5 @@
 @import "@fontsource-variable/plus-jakarta-sans";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 
 @theme {
   /* ── Typography ── */
