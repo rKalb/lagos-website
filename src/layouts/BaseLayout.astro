@@ -1,0 +1,222 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = 'Lagos — voice-to-text dictation for macOS. Hold a shortcut, speak, release. Your words appear wherever you\'re typing.',
+  ogImage = '/og-image.png',
+  noIndex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const navLinks = [
+  { href: '/features', label: 'Features' },
+  { href: '/getting-started', label: 'Docs' },
+  { href: '/changelog', label: 'Changelog' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title === 'Lagos' ? 'Lagos — Talk instead of type' : `${title} — Lagos`}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noIndex && <meta name="robots" content="noindex" />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Lagos" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preload font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+
+  <body class="min-h-screen flex flex-col" style="background-color: var(--color-bg); color: var(--color-text);">
+    <!-- Skip to main content (accessibility) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md"
+      style="background-color: var(--color-accent-500); color: var(--color-warm-900); font-weight: 600;"
+    >
+      Skip to main content
+    </a>
+
+    <!-- ── Header ── -->
+    <header
+      class="sticky top-0 z-40 border-b"
+      style="background-color: rgba(250, 249, 247, 0.92); backdrop-filter: blur(12px); border-color: var(--color-border);"
+    >
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a
+          href="/"
+          class="flex items-center gap-2 font-bold text-lg no-underline"
+          style="color: var(--color-text);"
+          aria-label="Lagos — Home"
+        >
+          <img src="/favicon.svg" alt="" width="28" height="28" class="rounded-md" />
+          Lagos
+        </a>
+
+        <!-- Desktop nav -->
+        <nav aria-label="Main navigation" class="hidden md:flex items-center gap-6">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class="text-sm font-medium no-underline transition-colors hover:no-underline"
+              style="color: var(--color-text-muted);"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Download CTA -->
+        <a
+          href={import.meta.env.LAGOS_DOWNLOAD_URL ?? '#download'}
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold no-underline transition-all hover:opacity-90 active:scale-95"
+          style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
+          aria-label="Download Lagos for Mac"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 12L3 7h3V2h4v5h3L8 12z"/>
+            <rect x="2" y="13" width="12" height="1.5" rx="0.75"/>
+          </svg>
+          Download
+        </a>
+
+        <!-- Mobile menu button (accessible) -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden p-2 rounded-md"
+          style="color: var(--color-text-muted);"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <rect y="3" width="20" height="2" rx="1"/>
+            <rect y="9" width="20" height="2" rx="1"/>
+            <rect y="15" width="20" height="2" rx="1"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="md:hidden hidden border-t" style="border-color: var(--color-border);">
+        <nav class="flex flex-col px-4 py-3 gap-1" aria-label="Mobile navigation">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class="px-3 py-2 rounded-md text-sm font-medium no-underline"
+              style="color: var(--color-text-muted);"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href={import.meta.env.LAGOS_DOWNLOAD_URL ?? '#download'}
+            class="mt-2 px-3 py-2 rounded-lg text-sm font-semibold text-center no-underline"
+            style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
+          >
+            Download for Mac
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ── Main Content ── -->
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer class="border-t mt-24" style="border-color: var(--color-border);">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <!-- Brand -->
+          <div class="col-span-2 md:col-span-1">
+            <a href="/" class="flex items-center gap-2 font-bold no-underline mb-3" style="color: var(--color-text);">
+              <img src="/favicon.svg" alt="" width="24" height="24" class="rounded-sm" />
+              Lagos
+            </a>
+            <p class="text-sm" style="color: var(--color-text-muted);">
+              Voice-to-text dictation for macOS. Talk instead of type.
+            </p>
+          </div>
+
+          <!-- Product -->
+          <div>
+            <h3 class="text-sm font-semibold mb-3" style="color: var(--color-text);">Product</h3>
+            <ul class="space-y-2 text-sm" style="color: var(--color-text-muted);">
+              <li><a href="/features" class="no-underline hover:underline">Features</a></li>
+              <li><a href="/pricing" class="no-underline hover:underline">Pricing</a></li>
+              <li><a href="/changelog" class="no-underline hover:underline">Changelog</a></li>
+              <li><a href="/blog" class="no-underline hover:underline">Blog</a></li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div>
+            <h3 class="text-sm font-semibold mb-3" style="color: var(--color-text);">Resources</h3>
+            <ul class="space-y-2 text-sm" style="color: var(--color-text-muted);">
+              <li><a href="/getting-started" class="no-underline hover:underline">Documentation</a></li>
+              <li><a href="/support" class="no-underline hover:underline">Support</a></li>
+              <li><a href={import.meta.env.DISCORD_INVITE_URL ?? 'https://discord.gg/PLACEHOLDER'} class="no-underline hover:underline" target="_blank" rel="noopener noreferrer">Discord</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal -->
+          <div>
+            <h3 class="text-sm font-semibold mb-3" style="color: var(--color-text);">Legal</h3>
+            <ul class="space-y-2 text-sm" style="color: var(--color-text-muted);">
+              <li><a href="/privacy" class="no-underline hover:underline">Privacy Policy</a></li>
+              <li><a href="/terms" class="no-underline hover:underline">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t text-sm" style="border-color: var(--color-border); color: var(--color-text-muted);">
+          <p>&copy; {new Date().getFullYear()} Lagos. All rights reserved.</p>
+          <p>Made for macOS &bull; Requires macOS 13 Ventura or later</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => {
+        const isOpen = menu?.classList.contains('hidden') === false;
+        menu?.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    </script>
+  </body>
+</html>

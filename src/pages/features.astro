@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import DownloadButton from '../components/DownloadButton.astro';
+---
+
+<BaseLayout
+  title="Features"
+  description="Lagos packs a full suite of voice dictation features: local AI engines, BYOK, transcription history, AI cleanup, 100+ languages, and more."
+>
+  <!-- Hero -->
+  <section class="pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-5xl font-bold mb-5 leading-tight" style="color: var(--color-text);">
+        Everything you need.<br />Nothing you don't.
+      </h1>
+      <p class="text-lg" style="color: var(--color-text-muted);">
+        Lagos packs professional-grade dictation into a lean menu bar app.
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature sections -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl space-y-24">
+
+      <!-- Hold-to-record -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">Core workflow</span>
+          <h2 class="text-3xl font-bold mt-2 mb-4" style="color: var(--color-text);">Hold. Speak. Release.</h2>
+          <p class="leading-relaxed mb-4" style="color: var(--color-text-muted);">
+            The entire workflow is a single gesture. Hold your modifier keys, speak naturally, release — Lagos transcribes and pastes directly into whatever you were typing in.
+          </p>
+          <ul class="space-y-2 text-sm" style="color: var(--color-text-muted);">
+            {['5 modifier key combinations to choose from', 'Works in any app — browser, terminal, IDE, anything', 'Clipboard preserved across paste operation', 'Visual recording indicator (pulsing menu bar icon)'].map(item => (
+              <li class="flex items-start gap-2">
+                <span style="color: var(--color-accent-600);" aria-hidden="true">→</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Card padding="lg">
+          <div class="text-5xl mb-4 text-center" aria-hidden="true">⌨️</div>
+          <div class="space-y-3 text-sm font-mono">
+            {[
+              { key: '⌘ + ⌃ (default)', desc: 'Hold to record' },
+              { key: '⌘ + ⇧', desc: 'Option A' },
+              { key: '⌘ + ⌥', desc: 'Option B' },
+              { key: '⌃ + ⌥', desc: 'Option C' },
+              { key: '⌃ + ⇧', desc: 'Option D' },
+            ].map(item => (
+              <div class="flex justify-between items-center py-2 border-b" style="border-color: var(--color-border);">
+                <span class="font-semibold" style="color: var(--color-text);">{item.key}</span>
+                <span style="color: var(--color-text-muted);">{item.desc}</span>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+
+      <!-- Transcription engines -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <Card padding="lg" class="md:order-first">
+          <div class="space-y-4">
+            {[
+              { icon: '⚡', name: 'Apple Speech', wer: '~8% WER', type: 'Built-in' },
+              { icon: '🧠', name: 'WhisperKit', wer: '~1% WER', type: 'Local AI' },
+              { icon: '☁️', name: 'Lagos Cloud', wer: '<1% WER', type: 'Coming soon' },
+              { icon: '🔑', name: 'BYOK', wer: 'Varies', type: 'Your key' },
+            ].map(e => (
+              <div class="flex items-center gap-4 p-3 rounded-lg" style="background-color: var(--color-bg);">
+                <span class="text-2xl" aria-hidden="true">{e.icon}</span>
+                <div class="flex-1">
+                  <div class="font-semibold text-sm" style="color: var(--color-text);">{e.name}</div>
+                  <div class="text-xs" style="color: var(--color-text-muted);">{e.type}</div>
+                </div>
+                <span class="text-xs font-mono px-2 py-1 rounded" style="background-color: var(--color-surface); color: var(--color-text-muted);">{e.wer}</span>
+              </div>
+            ))}
+          </div>
+        </Card>
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">Transcription engines</span>
+          <h2 class="text-3xl font-bold mt-2 mb-4" style="color: var(--color-text);">You choose the accuracy/privacy trade-off</h2>
+          <p class="leading-relaxed mb-4" style="color: var(--color-text-muted);">
+            Lagos is the only dictation tool that lets you mix and match transcription engines. Start with Apple's built-in engine — no setup — then upgrade to WhisperKit's local AI model for cloud-quality accuracy that never leaves your device.
+          </p>
+          <a href="/getting-started#engines" class="text-sm font-medium">Learn about each engine →</a>
+        </div>
+      </div>
+
+      <!-- AI Cleanup + History -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">AI polish</span>
+          <h2 class="text-2xl font-bold mt-2 mb-3" style="color: var(--color-text);">Post-processing cleanup</h2>
+          <p class="leading-relaxed mb-4 text-sm" style="color: var(--color-text-muted);">
+            Enable AI cleanup to automatically remove filler words ("um", "uh", "like"), fix punctuation, and polish grammar — using GPT-4o-mini on your own key or Lagos Cloud.
+          </p>
+          <p class="text-sm" style="color: var(--color-text-muted);">Bring your own OpenAI key, or leave it off entirely. Your choice.</p>
+        </div>
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">History</span>
+          <h2 class="text-2xl font-bold mt-2 mb-3" style="color: var(--color-text);">Searchable transcription history</h2>
+          <p class="leading-relaxed mb-4 text-sm" style="color: var(--color-text-muted);">
+            Every dictation is saved locally to a SQLite database with full-text search. Find anything you've ever said — by content, date, or engine used.
+          </p>
+          <p class="text-sm" style="color: var(--color-text-muted);">Stored at <code class="text-xs px-1 py-0.5 rounded" style="background-color: var(--color-surface);">~/Library/Application Support/Lagos/history.db</code>. Always yours.</p>
+        </div>
+      </div>
+
+      <!-- More features grid -->
+      <div>
+        <h2 class="text-3xl font-bold mb-10 text-center" style="color: var(--color-text);">And a whole lot more</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { icon: '🌍', title: '100+ languages', desc: 'Auto-detect or manually select. Whisper supports over 100 languages out of the box.' },
+            { icon: '🔐', title: 'Keychain-stored secrets', desc: 'API keys are stored in macOS Keychain, encrypted at rest. Never in plain text.' },
+            { icon: '🎵', title: 'Sound effects', desc: 'Optional audio cues for recording start, stop, and completion. Customizable sound packs.' },
+            { icon: '📋', title: 'Clipboard preservation', desc: 'Lagos saves and restores your clipboard around every paste operation.' },
+            { icon: '🚀', title: 'Launch at login', desc: 'Auto-start on login via SMAppService so Lagos is always ready when you are.' },
+            { icon: '🎙️', title: 'Noise-adaptive profiles', desc: 'Automatic environment detection adjusts transcription for quiet or noisy settings.' },
+          ].map(f => (
+            <Card>
+              <div class="text-2xl mb-3" aria-hidden="true">{f.icon}</div>
+              <h3 class="text-sm font-semibold mb-1.5" style="color: var(--color-text);">{f.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">{f.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-20 px-4 text-center" style="background-color: var(--color-surface);">
+    <div class="mx-auto max-w-md">
+      <h2 class="text-3xl font-bold mb-4" style="color: var(--color-text);">Ready to give your hands a break?</h2>
+      <div class="flex justify-center mt-8">
+        <DownloadButton />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,133 @@
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "tailwindcss/utilities";
+
+@theme {
+  /* ── Typography ── */
+  --font-sans: 'Plus Jakarta Sans Variable', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* ── Warm Neutral Palette ── */
+  --color-warm-50: #faf9f7;
+  --color-warm-100: #f5f2ee;
+  --color-warm-200: #ede8e1;
+  --color-warm-300: #e0d9cf;
+  --color-warm-400: #c7bdb0;
+  --color-warm-500: #a89b8c;
+  --color-warm-600: #7a6f63;
+  --color-warm-700: #57534e;
+  --color-warm-800: #3b3835;
+  --color-warm-900: #1c1917;
+
+  /* ── Amber Accent ── */
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-800: #92400e;
+
+  /* ── Semantic ── */
+  --color-bg: var(--color-warm-50);
+  --color-surface: var(--color-warm-100);
+  --color-border: var(--color-warm-200);
+  --color-text: var(--color-warm-900);
+  --color-text-muted: var(--color-warm-600);
+  --color-link: var(--color-accent-700);
+  --color-link-hover: var(--color-accent-800);
+
+  /* ── Border radius ── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+/* ── Base styles for marketing pages ── */
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* Focus ring for keyboard accessibility */
+:focus-visible {
+  outline: 3px solid var(--color-accent-500);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Prose styles for blog/changelog ── */
+.prose {
+  color: var(--color-text);
+  max-width: 68ch;
+  line-height: 1.75;
+  font-size: 1.0625rem;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: var(--color-warm-900);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+
+.prose h1 { font-size: 2.25rem; }
+.prose h2 { font-size: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem; }
+.prose h3 { font-size: 1.25rem; }
+
+.prose p { margin-bottom: 1.25em; }
+
+.prose code {
+  font-size: 0.875em;
+  background: var(--color-warm-100);
+  border: 1px solid var(--color-warm-200);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+}
+
+.prose pre {
+  background: var(--color-warm-900);
+  color: var(--color-warm-100);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.prose ul, .prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
+}
+
+.prose li { margin-bottom: 0.375em; }
+
+.prose blockquote {
+  border-left: 4px solid var(--color-accent-500);
+  padding-left: 1.25rem;
+  margin-left: 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.prose a {
+  color: var(--color-link);
+  font-weight: 500;
+}

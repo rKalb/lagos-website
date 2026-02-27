@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import DownloadButton from '../components/DownloadButton.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+---
+
+<BaseLayout
+  title="Pricing"
+  description="Lagos is free forever for local engines. Lagos Cloud — managed cloud transcription — is coming soon. Join the waitlist."
+>
+  <!-- Hero -->
+  <section class="pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-5xl font-bold mb-5" style="color: var(--color-text);">Simple pricing.</h1>
+      <p class="text-lg" style="color: var(--color-text-muted);">
+        The core Lagos experience is free — and always will be. Lagos Cloud brings a managed subscription for those who want more.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing cards -->
+  <section class="py-8 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl grid md:grid-cols-2 gap-8 items-start">
+
+      <!-- Free tier -->
+      <Card padding="lg">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold mb-1" style="color: var(--color-text);">Free</h2>
+          <div class="text-4xl font-bold my-3" style="color: var(--color-text);">$0</div>
+          <p class="text-sm" style="color: var(--color-text-muted);">Forever. No credit card. No account.</p>
+        </div>
+
+        <ul class="space-y-3 text-sm mb-8" style="color: var(--color-text-muted);">
+          {[
+            'Apple Speech (built-in, instant)',
+            'WhisperKit local AI (~1% WER)',
+            'Bring Your Own API Key (5 providers)',
+            'Transcription history (unlimited)',
+            'AI cleanup (with your own OpenAI key)',
+            '100+ language support',
+            'Auto-start on login',
+            'Keyboard shortcut customization',
+          ].map(item => (
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-accent-600); font-weight: 600;" aria-hidden="true">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <DownloadButton size="md" label="Download free" />
+      </Card>
+
+      <!-- Lagos Cloud -->
+      <Card padding="lg" class="relative overflow-hidden">
+        <!-- Coming soon badge -->
+        <div
+          class="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full"
+          style="background-color: #e0e7ff; color: #3730a3;"
+        >
+          Coming soon
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold mb-1" style="color: var(--color-text);">Lagos Cloud</h2>
+          <div class="text-4xl font-bold my-3" style="color: var(--color-text);">
+            TBD
+            <span class="text-lg font-normal" style="color: var(--color-text-muted);">/mo</span>
+          </div>
+          <p class="text-sm" style="color: var(--color-text-muted);">Managed cloud transcription. No API keys required.</p>
+        </div>
+
+        <ul class="space-y-3 text-sm mb-8" style="color: var(--color-text-muted);">
+          {[
+            'Everything in Free',
+            'Managed cloud transcription (no keys)',
+            'Sub-1% word error rate',
+            'AI cleanup included (no extra key)',
+            'Priority support',
+            'Early access to new features',
+          ].map(item => (
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-accent-600); font-weight: 600;" aria-hidden="true">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div>
+          <p class="text-sm font-medium mb-3" style="color: var(--color-text);">
+            Join the waitlist — be the first to know when it launches.
+          </p>
+          <NewsletterForm type="waitlist" buttonText="Join waitlist" />
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl">
+      <h2 class="text-3xl font-bold mb-10 text-center" style="color: var(--color-text);">Pricing FAQ</h2>
+      <div class="space-y-6">
+        {[
+          {
+            q: 'Is the free tier really free forever?',
+            a: 'Yes. Apple Speech and WhisperKit local AI are fully supported in the free tier and will always be free. The BYOK tier is also free — you only pay your own API provider directly.',
+          },
+          {
+            q: 'What is Lagos Cloud and when is it coming?',
+            a: 'Lagos Cloud is a managed transcription service — you get cloud-grade accuracy without managing your own API keys or running local models. Pricing and timeline are being finalized. Join the waitlist above to get notified first.',
+          },
+          {
+            q: 'Will Lagos Cloud require an account?',
+            a: 'Lagos Cloud will require an account to manage your subscription. The free tier (Apple Speech and WhisperKit) will remain account-free.',
+          },
+          {
+            q: 'Can I use my own OpenAI or Deepgram key?',
+            a: 'Absolutely. Lagos supports OpenAI, Deepgram, AssemblyAI, Google Cloud Speech, and Wispr Flow via BYOK. Your keys are stored securely in the macOS Keychain.',
+          },
+        ].map(item => (
+          <details class="group rounded-xl border" style="border-color: var(--color-border);">
+            <summary
+              class="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-sm list-none"
+              style="color: var(--color-text);"
+            >
+              {item.q}
+              <svg
+                class="transition-transform group-open:rotate-180 shrink-0 ml-4"
+                width="16" height="16" viewBox="0 0 16 16"
+                fill="currentColor"
+                style="color: var(--color-text-muted);"
+                aria-hidden="true"
+              >
+                <path d="M8 10.5L3 5.5h10L8 10.5z"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-5 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

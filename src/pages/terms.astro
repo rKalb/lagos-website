@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = 'February 26, 2026';
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="Lagos Terms of Service — terms and conditions for using Lagos."
+>
+  <article class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl font-bold mb-3" style="color: var(--color-text);">Terms of Service</h1>
+      <p class="text-sm mb-10" style="color: var(--color-text-muted);">Last updated: {lastUpdated}</p>
+
+      <div class="prose">
+        <p>
+          These Terms of Service ("Terms") govern your use of Lagos, the macOS voice dictation application, and the trylagos.app website. By downloading or using Lagos, you agree to these Terms.
+        </p>
+
+        <h2>1. License</h2>
+        <p>
+          Lagos grants you a personal, non-exclusive, non-transferable license to use the Lagos application on macOS devices you own or control, for personal and commercial purposes.
+        </p>
+
+        <h2>2. Permitted Use</h2>
+        <p>You may use Lagos to:</p>
+        <ul>
+          <li>Dictate text into any application on your Mac</li>
+          <li>Use any supported transcription engine, including your own API keys</li>
+          <li>Access and export your own transcription history</li>
+        </ul>
+
+        <h2>3. Prohibited Use</h2>
+        <p>You may not:</p>
+        <ul>
+          <li>Reverse engineer, decompile, or disassemble the Lagos application</li>
+          <li>Use Lagos to record others without their consent (comply with local laws)</li>
+          <li>Attempt to bypass any technical limitations in the application</li>
+          <li>Resell or redistribute Lagos without permission</li>
+        </ul>
+
+        <h2>4. Third-Party Services</h2>
+        <p>
+          When using BYOK (Bring Your Own Key) features, you are interacting directly with third-party APIs (OpenAI, Deepgram, AssemblyAI, Google Cloud, Wispr Flow). You are responsible for complying with those providers' terms of service. Lagos is not responsible for third-party service availability or billing.
+        </p>
+
+        <h2>5. Lagos Cloud (Coming Soon)</h2>
+        <p>
+          When Lagos Cloud launches, additional terms will apply to the subscription service, including payment terms, fair use policies, and service level commitments. Those terms will be presented before you subscribe.
+        </p>
+
+        <h2>6. Disclaimer of Warranties</h2>
+        <p>
+          Lagos is provided "as is" without warranty of any kind. We do not warrant that Lagos will be error-free, that transcription accuracy will meet specific thresholds, or that the service will be uninterrupted.
+        </p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>
+          To the maximum extent permitted by law, Lagos and its developers shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the application.
+        </p>
+
+        <h2>8. Changes to Terms</h2>
+        <p>
+          We may update these Terms as Lagos evolves. Continued use after changes constitutes acceptance of the new Terms. Material changes will be communicated via in-app release notes.
+        </p>
+
+        <h2>9. Contact</h2>
+        <p>
+          For questions about these Terms, contact us at <a href="mailto:legal@trylagos.app">legal@trylagos.app</a>.
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

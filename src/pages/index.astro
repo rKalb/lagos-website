@@ -1,17 +1,282 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadButton from '../components/DownloadButton.astro';
+import Card from '../components/Card.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Lagos">
+  <!-- ── Hero ── -->
+  <section class="relative overflow-hidden pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8 border"
+        style="background-color: var(--color-accent-400); background-color: #fef3c7; border-color: var(--color-accent-400); color: var(--color-accent-800);"
+      >
+        <span style="width: 6px; height: 6px; border-radius: 50%; background-color: var(--color-accent-500); display: inline-block;"></span>
+        Version 1.3.2 — Now available
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight leading-tight mb-6" style="color: var(--color-text);">
+        Talk instead<br />of type.
+      </h1>
+
+      <p class="text-xl leading-relaxed mb-10 mx-auto max-w-xl" style="color: var(--color-text-muted);">
+        Instant voice dictation for Mac. Hold a keyboard shortcut, speak your mind, release — your words appear wherever you're typing.
+      </p>
+
+      <div class="flex justify-center">
+        <DownloadButton size="lg" />
+      </div>
+    </div>
+
+    <!-- Demo placeholder (replace with actual screen recording) -->
+    <div class="mx-auto mt-16 max-w-3xl rounded-2xl overflow-hidden border shadow-lg" style="border-color: var(--color-border); background-color: var(--color-surface);">
+      <div
+        class="flex items-center gap-1.5 px-4 py-3 border-b"
+        style="background-color: var(--color-warm-200); border-color: var(--color-border);"
+      >
+        <span class="w-3 h-3 rounded-full" style="background-color: #ff5f57;"></span>
+        <span class="w-3 h-3 rounded-full" style="background-color: #ffbd2e;"></span>
+        <span class="w-3 h-3 rounded-full" style="background-color: #28c840;"></span>
+        <span class="ml-auto text-xs font-mono" style="color: var(--color-text-muted);">Lagos — Recording</span>
+      </div>
+      <!-- Demo video — replace src with actual screen recording -->
+      <div
+        class="aspect-video flex flex-col items-center justify-center gap-4 p-8"
+        style="background: linear-gradient(135deg, var(--color-warm-100) 0%, var(--color-surface) 100%);"
+        aria-label="Lagos app demo — hold shortcut, speak, text appears"
+      >
+        <div
+          class="w-16 h-16 rounded-2xl flex items-center justify-center"
+          style="background-color: var(--color-accent-500);"
+          aria-hidden="true"
+        >
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <path d="M14 4a4 4 0 0 1 4 4v8a4 4 0 0 1-8 0V8a4 4 0 0 1 4-4z" fill="var(--color-warm-900)"/>
+            <path d="M6 14a8 8 0 0 0 16 0M14 22v4" stroke="var(--color-warm-900)" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="text-sm font-medium" style="color: var(--color-text-muted);">
+          Demo video coming soon — <a href="#download">download to try it yourself</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Social proof / integrations bar ── -->
+  <section class="py-10 border-y" style="border-color: var(--color-border);">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+      <p class="text-xs font-semibold uppercase tracking-widest mb-6" style="color: var(--color-text-muted);">
+        Works everywhere you type
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-6 opacity-60" aria-label="Compatible applications">
+        {['VS Code', 'Cursor', 'Notion', 'Chrome', 'Slack', 'Mail', 'Obsidian', 'Xcode'].map(app => (
+          <span class="text-sm font-medium" style="color: var(--color-warm-700);">{app}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features overview ── -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4" style="color: var(--color-text);">Built for how you think</h2>
+        <p class="text-lg max-w-xl mx-auto" style="color: var(--color-text-muted);">
+          No subscriptions required. No account. No friction. Just hold, speak, release.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          {
+            icon: '⚡',
+            title: 'Instant, zero setup',
+            desc: 'Uses Apple\'s built-in Speech framework. Works the moment you install it. No API keys, no configuration.',
+          },
+          {
+            icon: '🧠',
+            title: 'Local AI accuracy',
+            desc: 'WhisperKit runs entirely on your device. One-click download gets you <1% word error rate — without sending audio anywhere.',
+          },
+          {
+            icon: '🔒',
+            title: 'Privacy first',
+            desc: 'Your audio is never stored on disk. Local engines never touch the network. You choose exactly where your voice data goes.',
+          },
+          {
+            icon: '🌍',
+            title: '100+ languages',
+            desc: 'Auto-detect or manually select from over 100 languages. Works with your native tongue, wherever you are.',
+          },
+        ].map(f => (
+          <Card>
+            <div class="text-3xl mb-4" aria-hidden="true">{f.icon}</div>
+            <h3 class="text-base font-semibold mb-2" style="color: var(--color-text);">{f.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">{f.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Engine levels ── -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8" style="background-color: var(--color-surface);">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4" style="color: var(--color-text);">Your level of control</h2>
+        <p class="text-lg" style="color: var(--color-text-muted);">
+          From instant built-in to cloud-grade — choose the engine that fits your needs.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {[
+          {
+            level: '1',
+            name: 'Apple Speech',
+            badge: 'Built-in',
+            badgeColor: '#d1fae5',
+            badgeTextColor: '#065f46',
+            desc: 'Instant transcription using macOS Speech Recognition. ~8% word error rate. Zero setup, works offline.',
+          },
+          {
+            level: '2',
+            name: 'WhisperKit — Local AI',
+            badge: 'Recommended',
+            badgeColor: '#fef3c7',
+            badgeTextColor: '#92400e',
+            desc: 'OpenAI Whisper running on-device via Core ML. ~1% word error rate. One-click model download. 100% private.',
+          },
+          {
+            level: '3',
+            name: 'Lagos Cloud',
+            badge: 'Coming soon',
+            badgeColor: '#e0e7ff',
+            badgeTextColor: '#3730a3',
+            desc: 'Managed cloud transcription. No API keys required. Best for users who want accuracy without managing models.',
+          },
+          {
+            level: '4',
+            name: 'Bring Your Own Key',
+            badge: 'Power users',
+            badgeColor: '#f5f2ee',
+            badgeTextColor: '#57534e',
+            desc: 'Connect your own OpenAI, Deepgram, AssemblyAI, Google Cloud, or Wispr Flow API key. Full control.',
+          },
+        ].map(e => (
+          <div
+            class="flex items-start gap-4 p-5 rounded-xl border"
+            style="background-color: var(--color-bg); border-color: var(--color-border);"
+          >
+            <div
+              class="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold"
+              style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
+              aria-label={`Level ${e.level}`}
+            >
+              {e.level}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <h3 class="text-base font-semibold" style="color: var(--color-text);">{e.name}</h3>
+                <span
+                  class="text-xs font-medium px-2 py-0.5 rounded-full"
+                  style={`background-color: ${e.badgeColor}; color: ${e.badgeTextColor};`}
+                >
+                  {e.badge}
+                </span>
+              </div>
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">{e.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Dual audience section ── -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4" style="color: var(--color-text);">Who uses Lagos?</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Accessibility card -->
+        <Card padding="lg">
+          <div class="text-4xl mb-5" aria-hidden="true">♿</div>
+          <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">For accessibility needs</h3>
+          <p class="leading-relaxed mb-6" style="color: var(--color-text-muted);">
+            RSI, carpal tunnel, motor impairments, fatigue — Lagos gives you a friction-free way to type without typing. Talk at your natural pace and let Lagos handle the rest.
+          </p>
+          <ul class="space-y-2 text-sm" style="color: var(--color-text-muted);">
+            {[
+              'Works in any text field, anywhere on your Mac',
+              'No hand movement required after shortcut press',
+              'Customizable modifier keys to match your setup',
+              'Optional floating recording indicator',
+            ].map(item => (
+              <li class="flex items-start gap-2">
+                <span style="color: var(--color-accent-600); margin-top: 2px;" aria-hidden="true">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <!-- Vibe coding card -->
+        <Card padding="lg">
+          <div class="text-4xl mb-5" aria-hidden="true">🎯</div>
+          <h3 class="text-xl font-bold mb-3" style="color: var(--color-text);">For developers & creators</h3>
+          <p class="leading-relaxed mb-6" style="color: var(--color-text-muted);">
+            Dictate prompts to your AI coding assistant, narrate commit messages, jot notes mid-flow — without breaking your keyboard momentum. Think it, say it, done.
+          </p>
+          <ul class="space-y-2 text-sm" style="color: var(--color-text-muted);">
+            {[
+              'AI cleanup removes filler words and fixes grammar',
+              'Full transcription history with full-text search',
+              'Works with Cursor, VS Code, Claude, ChatGPT',
+              'BYOK for full control over quality and cost',
+            ].map(item => (
+              <li class="flex items-start gap-2">
+                <span style="color: var(--color-accent-600); margin-top: 2px;" aria-hidden="true">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bottom download CTA ── -->
+  <section
+    class="py-24 px-4 sm:px-6 lg:px-8 text-center"
+    style="background-color: var(--color-surface);"
+    id="download"
+  >
+    <div class="mx-auto max-w-2xl">
+      <h2 class="text-4xl font-bold mb-4" style="color: var(--color-text);">
+        Start talking, stop typing.
+      </h2>
+      <p class="text-lg mb-10" style="color: var(--color-text-muted);">
+        Download Lagos free. No account, no subscription, no catch.
+      </p>
+      <div class="flex justify-center">
+        <DownloadButton size="lg" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Newsletter signup ── -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-md text-center">
+      <h2 class="text-2xl font-bold mb-2" style="color: var(--color-text);">Stay in the loop</h2>
+      <p class="text-sm mb-6" style="color: var(--color-text-muted);">
+        New features, tips, and Lagos Cloud launch — straight to your inbox.
+      </p>
+      <NewsletterForm type="newsletter" />
+    </div>
+  </section>
+</BaseLayout>

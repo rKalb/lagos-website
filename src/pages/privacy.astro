@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = 'February 26, 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Lagos Privacy Policy — how we handle your data, audio, and personal information."
+>
+  <article class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl font-bold mb-3" style="color: var(--color-text);">Privacy Policy</h1>
+      <p class="text-sm mb-10" style="color: var(--color-text-muted);">Last updated: {lastUpdated}</p>
+
+      <div class="prose">
+        <p>
+          Lagos ("we", "our", "the app") is a macOS voice dictation application. We take your privacy seriously, especially because Lagos processes audio. This policy explains what data we collect, how we use it, and your choices.
+        </p>
+
+        <h2>Audio and Transcription</h2>
+        <p>
+          <strong>Audio is never stored on disk.</strong> When you hold your shortcut to record, audio is captured in memory only. It is sent to the transcription engine you have selected and then immediately discarded.
+        </p>
+        <ul>
+          <li><strong>Apple Speech (Level 1):</strong> Audio is processed by macOS Speech Recognition. Apple's privacy policy applies. No audio leaves your device through Lagos.</li>
+          <li><strong>WhisperKit (Level 2):</strong> Audio is processed entirely on-device using Core ML. Nothing is ever sent to a server.</li>
+          <li><strong>Lagos Cloud (Level 3 — coming soon):</strong> Audio is sent to Lagos servers for transcription. It is deleted immediately after transcription is complete. No audio is stored or retained.</li>
+          <li><strong>BYOK (Level 4):</strong> Audio is sent to your chosen third-party provider (OpenAI, Deepgram, AssemblyAI, Google Cloud, or Wispr Flow). That provider's privacy policy applies.</li>
+        </ul>
+
+        <h2>Transcription History</h2>
+        <p>
+          Transcribed text is saved locally to a SQLite database at <code>~/Library/Application Support/Lagos/history.db</code> on your device. This data never leaves your device unless you export it manually. You can delete your history at any time from Lagos settings.
+        </p>
+
+        <h2>API Keys</h2>
+        <p>
+          API keys you enter for BYOK providers are stored exclusively in the macOS Keychain, encrypted by the operating system. They are never transmitted to Lagos servers.
+        </p>
+
+        <h2>Analytics</h2>
+        <p>
+          Lagos collects anonymous usage analytics via Firebase Analytics to understand which features are used and improve the app. This data is:
+        </p>
+        <ul>
+          <li>Anonymous — not linked to your identity</li>
+          <li>Aggregated — not individual transcription content</li>
+          <li>Limited to events like "recording started", "engine changed", "settings opened"</li>
+          <li>Never includes the content of your transcriptions</li>
+        </ul>
+        <p>Analytics can be disabled (see Settings → Privacy).</p>
+
+        <h2>Crash Reports</h2>
+        <p>
+          If Lagos crashes, macOS may generate a crash report that can be shared with us via the standard macOS crash reporter dialog. Crash reports do not include audio or transcription content.
+        </p>
+
+        <h2>Website Analytics</h2>
+        <p>
+          This website (trylagos.app) uses Firebase Analytics to understand page views and traffic patterns. No personally identifiable information is collected. Standard web analytics data (page views, referrers, device type) is anonymized.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For privacy questions or data deletion requests, contact us at <a href="mailto:privacy@trylagos.app">privacy@trylagos.app</a>.
+        </p>
+
+        <h2>Changes to This Policy</h2>
+        <p>
+          We may update this policy as the app evolves. Material changes will be announced via the in-app update notes or blog.
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

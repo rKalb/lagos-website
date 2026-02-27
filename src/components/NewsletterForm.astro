@@ -1,0 +1,104 @@
+---
+interface Props {
+  type?: 'newsletter' | 'waitlist';
+  label?: string;
+  placeholder?: string;
+  buttonText?: string;
+  class?: string;
+}
+
+const {
+  type = 'newsletter',
+  label = type === 'waitlist' ? 'Join the Lagos Cloud waitlist' : 'Stay in the loop',
+  placeholder = 'you@example.com',
+  buttonText = type === 'waitlist' ? 'Join waitlist' : 'Subscribe',
+  class: className = '',
+} = Astro.props;
+
+const formId = `form-${type}-${Math.random().toString(36).slice(2, 7)}`;
+---
+
+<form
+  id={formId}
+  class={`flex flex-col gap-3 ${className}`}
+  data-form-type={type}
+  novalidate
+>
+  <label for={`${formId}-email`} class="sr-only">{label}</label>
+  <div class="flex flex-col sm:flex-row gap-2">
+    <input
+      id={`${formId}-email`}
+      type="email"
+      name="email"
+      placeholder={placeholder}
+      required
+      autocomplete="email"
+      class="flex-1 px-4 py-2.5 rounded-lg text-sm border"
+      style="background-color: var(--color-bg); border-color: var(--color-border); color: var(--color-text); outline: none;"
+      aria-required="true"
+    />
+    <button
+      type="submit"
+      class="px-5 py-2.5 rounded-lg text-sm font-semibold no-underline transition-all hover:opacity-90 active:scale-95 whitespace-nowrap"
+      style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
+    >
+      {buttonText}
+    </button>
+  </div>
+  <p
+    id={`${formId}-status`}
+    class="text-sm hidden"
+    aria-live="polite"
+    role="status"
+  ></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-form-type]').forEach(form => {
+    const statusEl = document.getElementById(`${form.id}-status`);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (form.elements.namedItem('email') as HTMLInputElement)?.value;
+      const formType = form.dataset.formType;
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+      if (!email) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, type: formType }),
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          if (statusEl) {
+            statusEl.textContent = formType === 'waitlist'
+              ? "You're on the waitlist! We'll let you know when Lagos Cloud launches."
+              : "You're subscribed. Thanks for following along!";
+            statusEl.style.color = 'var(--color-accent-700)';
+            statusEl.classList.remove('hidden');
+          }
+          form.reset();
+        } else {
+          throw new Error(data.message ?? 'Submission failed');
+        }
+      } catch (err) {
+        if (statusEl) {
+          statusEl.textContent = 'Something went wrong. Please try again.';
+          statusEl.style.color = '#dc2626';
+          statusEl.classList.remove('hidden');
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = form.dataset.formType === 'waitlist' ? 'Join waitlist' : 'Subscribe';
+      }
+    });
+  });
+</script>
