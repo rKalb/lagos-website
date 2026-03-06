@@ -35,7 +35,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 
 <BaseLayout
   title="Pricing"
-  description="Lagos is free forever for local AI transcription. Lagos Pro adds cloud transcription, custom vocabularies, and AI cleanup — starting at $4.08/mo."
+  description="Lagos is free forever for local AI transcription. Lagos Pro adds cloud transcription and AI cleanup — starting at $4.08/mo."
 >
   <!-- Hero -->
   <section class="pt-20 pb-14 px-4 sm:px-6 lg:px-8 text-center">
@@ -90,11 +90,11 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
         <ul class="space-y-3 text-sm mb-8" style="color: var(--color-text-muted);">
           {[
             'Apple Speech — instant, built-in',
-            'WhisperKit local AI (~1% word error rate)',
+            'WhisperKit local AI (up to ~1% word error rate)',
             'Works 100% offline',
             'Unlimited transcription history',
             'Bring Your Own API Key (5 providers)',
-            '100+ languages',
+            'Auto-detect + 12 languages',
             'Keyboard shortcut customization',
           ].map(item => (
             <li class="flex items-start gap-2.5">
@@ -222,7 +222,6 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           {[
             'Everything in Free',
             'Lagos Pro Cloud — no API keys needed',
-            'Custom vocabularies & personal dictionary',
             'AI cleanup included (no OpenAI key required)',
             'Priority support',
             'Early access to new features',
@@ -298,7 +297,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           },
           {
             q: 'What does Lagos Pro add?',
-            a: 'Lagos Pro adds managed cloud transcription (no API keys needed), custom vocabularies, a personal dictionary, and AI text cleanup. You also get priority support and early access to new features.',
+            a: 'Lagos Pro adds managed cloud transcription (no API keys needed) and AI text cleanup without requiring your own OpenAI key. You also get priority support and early access to new features.',
           },
           {
             q: 'What\'s the beta offer?',

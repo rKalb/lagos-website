@@ -130,7 +130,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
                 ></span>
                 <span class="text-xs font-semibold" style="color:rgba(255,255,255,0.85);">Recording</span>
               </div>
-              <span class="text-xs font-mono" style="color:rgba(255,255,255,0.3);">⌥ Space</span>
+              <span class="text-xs font-mono" style="color:rgba(255,255,255,0.3);">⌘⌃</span>
             </div>
 
             <!-- Waveform -->
@@ -159,7 +159,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
               <kbd
                 class="px-1.5 py-0.5 rounded font-mono text-xs"
                 style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.5);"
-              >⌥ Space</kbd>
+              >⌘⌃</kbd>
               <span>to transcribe</span>
             </div>
           </div>
@@ -201,7 +201,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           },
           {
             title: 'Local AI accuracy',
-            desc: 'WhisperKit runs entirely on your device via Core ML. Under 1% word error rate. 100% private — no audio leaves your Mac.',
+            desc: 'WhisperKit runs entirely on your device via Core ML. As low as ~1% word error rate with the Turbo model. 100% private — no audio leaves your Mac.',
             icon: `<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.75" fill="none"/><path d="M9 9h6M9 12h6M9 15h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>`,
           },
           {
@@ -210,8 +210,8 @@ import NewsletterForm from '../components/NewsletterForm.astro';
             icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`,
           },
           {
-            title: '100+ languages',
-            desc: 'Auto-detect or pick your language. WhisperKit handles over 100 languages — speak in whatever tongue feels natural.',
+            title: 'Multi-language',
+            desc: 'Auto-detect or choose from 12 built-in languages including English, Spanish, French, German, Japanese, Chinese, and more.',
             icon: `<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75" fill="none"/><path d="M2 12h20M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18" stroke="currentColor" stroke-width="1.75" fill="none"/>`,
           },
         ].map(f => (
@@ -262,7 +262,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
             badge: 'Recommended',
             badgeBg: '#fef3c7',
             badgeColor: '#92400e',
-            desc: 'OpenAI Whisper on-device via Core ML. ~1% word error rate. One-time ~150 MB model download. Completely private.',
+            desc: 'OpenAI Whisper on-device via Core ML. Two models: Standard (~150 MB, ~5% WER) or Turbo (~1.5 GB, ~1% WER). Completely private.',
             accentBg: '#fef3c7',
             accentColor: '#d97706',
           },

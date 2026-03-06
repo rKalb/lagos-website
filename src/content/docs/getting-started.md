@@ -43,7 +43,7 @@ Lagos supports four transcription levels:
 | Level | Engine | Accuracy | Privacy | Setup |
 |-------|--------|----------|---------|-------|
 | 1 | Apple Speech | ~8% WER | On-device | None |
-| 2 | WhisperKit | ~1% WER | On-device | Download model |
+| 2 | WhisperKit | ~1–5% WER | On-device | Download model |
 | 3 | Lagos Pro Cloud | <1% WER | Cloud | Subscription (coming soon) |
 | 4 | BYOK | Varies | Depends | API key |
 

@@ -6,7 +6,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 
 <BaseLayout
   title="Features"
-  description="Lagos packs a full suite of voice dictation features: local AI engines, BYOK, transcription history, AI cleanup, 100+ languages, and more."
+  description="Lagos packs a full suite of voice dictation features: local AI engines, BYOK, transcription history, AI cleanup, multi-language support, and more."
 >
   <!-- Hero -->
   <section class="pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-center">
@@ -66,7 +66,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           <div class="space-y-4">
             {[
               { icon: '⚡', name: 'Apple Speech', wer: '~8% WER', type: 'Built-in' },
-              { icon: '🧠', name: 'WhisperKit', wer: '~1% WER', type: 'Local AI' },
+              { icon: '🧠', name: 'WhisperKit', wer: '~1–5% WER', type: 'Local AI' },
               { icon: '☁️', name: 'Lagos Pro Cloud', wer: '<1% WER', type: 'Coming soon' },
               { icon: '🔑', name: 'BYOK', wer: 'Varies', type: 'Your key' },
             ].map(e => (
@@ -116,7 +116,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
         <h2 class="text-3xl font-bold mb-10 text-center" style="color: var(--color-text);">And a whole lot more</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { icon: '🌍', title: '100+ languages', desc: 'Auto-detect or manually select. Whisper supports over 100 languages out of the box.' },
+            { icon: '🌍', title: 'Multi-language', desc: 'Auto-detect or choose from 12 built-in languages. WhisperKit and Apple Speech both support major world languages.' },
             { icon: '🔐', title: 'Keychain-stored secrets', desc: 'API keys are stored in macOS Keychain, encrypted at rest. Never in plain text.' },
             { icon: '🎵', title: 'Sound effects', desc: 'Optional audio cues for recording start, stop, and completion. Customizable sound packs.' },
             { icon: '📋', title: 'Clipboard preservation', desc: 'Lagos saves and restores your clipboard around every paste operation.' },
