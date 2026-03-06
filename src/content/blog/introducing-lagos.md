@@ -33,7 +33,7 @@ Lagos supports four transcription levels:
 
 - **Apple Speech** — instant, built-in, zero setup
 - **WhisperKit** — local AI, ~1% word error rate, completely private
-- **Lagos Cloud** — coming soon, managed cloud accuracy without API keys
+- **Lagos Pro Cloud** — coming soon, managed cloud accuracy without API keys
 - **BYOK** — bring your own OpenAI, Deepgram, AssemblyAI, Google Cloud, or Wispr Flow key
 
 You start at Level 1 and upgrade when you want more. The app doesn't push you anywhere.
@@ -51,7 +51,7 @@ Lagos works for anyone who types on a Mac and wants to talk instead. That includ
 
 Lagos 1.3.2 is out today. We're actively working on:
 
-- **Lagos Cloud** — managed cloud transcription, no key required
+- **Lagos Pro Cloud** — managed cloud transcription, no key required
 - **Per-app language profiles** — auto-switch languages based on which app you're in
 - **Custom cleanup templates** — save prompt templates for different use cases
 

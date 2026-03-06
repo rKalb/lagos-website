@@ -9,7 +9,7 @@ interface Props {
 
 const {
   type = 'newsletter',
-  label = type === 'waitlist' ? 'Join the Lagos Cloud waitlist' : 'Stay in the loop',
+  label = type === 'waitlist' ? 'Join the Lagos Pro waitlist' : 'Stay in the loop',
   placeholder = 'you@example.com',
   buttonText = type === 'waitlist' ? 'Join waitlist' : 'Subscribe',
   class: className = '',
@@ -80,7 +80,7 @@ const formId = `form-${type}-${Math.random().toString(36).slice(2, 7)}`;
         if (res.ok) {
           if (statusEl) {
             statusEl.textContent = formType === 'waitlist'
-              ? "You're on the waitlist! We'll let you know when Lagos Cloud launches."
+              ? "You're on the waitlist! We'll let you know when Lagos Pro launches."
               : "You're subscribed. Thanks for following along!";
             statusEl.style.color = 'var(--color-accent-700)';
             statusEl.classList.remove('hidden');

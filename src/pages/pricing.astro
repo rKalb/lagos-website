@@ -1,123 +1,222 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Card from '../components/Card.astro';
 import DownloadButton from '../components/DownloadButton.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
 ---
 
+<style>
+  .billing-toggle button[data-active="true"] {
+    background-color: var(--color-warm-900);
+    color: var(--color-warm-50);
+  }
+  .billing-toggle button[data-active="false"] {
+    background-color: transparent;
+    color: var(--color-text-muted);
+  }
+  #price-monthly { display: block; }
+  #price-annual  { display: none;  }
+  #save-badge    { display: none;  }
+  .is-annual #price-monthly { display: none;  }
+  .is-annual #price-annual  { display: block; }
+  .is-annual #save-badge    { display: inline-flex; }
+</style>
+
 <BaseLayout
   title="Pricing"
-  description="Lagos is free forever for local engines. Lagos Cloud — managed cloud transcription — is coming soon. Join the waitlist."
+  description="Lagos is free forever for local AI transcription. Lagos Pro adds cloud transcription, custom vocabularies, and AI cleanup — coming soon."
 >
   <!-- Hero -->
   <section class="pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-center">
     <div class="mx-auto max-w-2xl">
-      <h1 class="text-5xl font-bold mb-5" style="color: var(--color-text);">Simple pricing.</h1>
+      <h1 class="text-5xl font-bold mb-5" style="color: var(--color-text); letter-spacing: -0.02em;">
+        Simple pricing.
+      </h1>
       <p class="text-lg" style="color: var(--color-text-muted);">
-        The core Lagos experience is free — and always will be. Lagos Cloud brings a managed subscription for those who want more.
+        The core Lagos experience is free — local AI, unlimited use, no account required. Lagos Pro adds cloud features and priority support.
       </p>
     </div>
   </section>
 
+  <!-- Billing toggle -->
+  <div class="flex justify-center px-4 mb-8">
+    <div
+      class="billing-toggle inline-flex items-center gap-1 p-1 rounded-lg border"
+      style="background-color: var(--color-surface); border-color: var(--color-border);"
+      id="billing-toggle"
+      role="group"
+      aria-label="Billing period"
+    >
+      <button
+        data-period="monthly"
+        data-active="true"
+        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all"
+        aria-pressed="true"
+      >
+        Monthly
+      </button>
+      <button
+        data-period="annual"
+        data-active="false"
+        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all"
+        aria-pressed="false"
+      >
+        Annual
+      </button>
+    </div>
+  </div>
+
   <!-- Pricing cards -->
-  <section class="py-8 px-4 sm:px-6 lg:px-8">
+  <section class="pb-8 px-4 sm:px-6 lg:px-8" id="pricing-cards">
     <div class="mx-auto max-w-4xl grid md:grid-cols-2 gap-8 items-start">
 
       <!-- Free tier -->
-      <Card padding="lg">
+      <div
+        class="rounded-2xl border p-8"
+        style="background-color: var(--color-surface); border-color: var(--color-border); box-shadow: 0 1px 3px 0 rgba(0,0,0,0.07);"
+      >
         <div class="mb-6">
-          <h2 class="text-2xl font-bold mb-1" style="color: var(--color-text);">Free</h2>
-          <div class="text-4xl font-bold my-3" style="color: var(--color-text);">$0</div>
-          <p class="text-sm" style="color: var(--color-text-muted);">Forever. No credit card. No account.</p>
+          <h2 class="text-xl font-bold mb-1" style="color: var(--color-text);">Lagos Free</h2>
+          <div class="flex items-end gap-1 my-4">
+            <span class="text-5xl font-bold" style="color: var(--color-text); letter-spacing: -0.03em;">$0</span>
+            <span class="text-sm pb-2" style="color: var(--color-text-muted);">forever</span>
+          </div>
+          <p class="text-sm" style="color: var(--color-text-muted);">No credit card. No account. No catch.</p>
         </div>
 
         <ul class="space-y-3 text-sm mb-8" style="color: var(--color-text-muted);">
           {[
-            'Apple Speech (built-in, instant)',
-            'WhisperKit local AI (~1% WER)',
+            'Apple Speech — instant, built-in',
+            'WhisperKit local AI (~1% word error rate)',
+            'Works 100% offline',
+            'Unlimited transcription history',
             'Bring Your Own API Key (5 providers)',
-            'Transcription history (unlimited)',
-            'AI cleanup (with your own OpenAI key)',
-            '100+ language support',
-            'Auto-start on login',
+            '100+ languages',
             'Keyboard shortcut customization',
           ].map(item => (
-            <li class="flex items-start gap-2">
-              <span style="color: var(--color-accent-600); font-weight: 600;" aria-hidden="true">✓</span>
+            <li class="flex items-start gap-2.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent-600);"/>
+              </svg>
               {item}
             </li>
           ))}
         </ul>
 
         <DownloadButton size="md" label="Download free" />
-      </Card>
+      </div>
 
-      <!-- Lagos Cloud -->
-      <Card padding="lg" class="relative overflow-hidden">
+      <!-- Lagos Pro -->
+      <div
+        class="rounded-2xl border p-8 relative overflow-hidden"
+        style="background-color: var(--color-warm-900); border-color: rgba(255,255,255,0.1); box-shadow: 0 8px 32px -8px rgba(0,0,0,0.3);"
+      >
         <!-- Coming soon badge -->
         <div
           class="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full"
-          style="background-color: #e0e7ff; color: #3730a3;"
+          style="background-color: rgba(251,191,36,0.15); color: var(--color-accent-400); border: 1px solid rgba(251,191,36,0.25);"
         >
           Coming soon
         </div>
 
         <div class="mb-6">
-          <h2 class="text-2xl font-bold mb-1" style="color: var(--color-text);">Lagos Cloud</h2>
-          <div class="text-4xl font-bold my-3" style="color: var(--color-text);">
-            TBD
-            <span class="text-lg font-normal" style="color: var(--color-text-muted);">/mo</span>
+          <h2 class="text-xl font-bold mb-1" style="color: var(--color-warm-50);">Lagos Pro</h2>
+
+          <!-- Monthly price -->
+          <div id="price-monthly" class="flex items-end gap-1 my-4">
+            <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$6</span>
+            <span class="text-sm pb-2" style="color: var(--color-warm-400);">/ month</span>
           </div>
-          <p class="text-sm" style="color: var(--color-text-muted);">Managed cloud transcription. No API keys required.</p>
+
+          <!-- Annual price -->
+          <div id="price-annual" class="flex items-end gap-2 my-4 flex-wrap">
+            <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$49</span>
+            <div class="flex flex-col pb-2">
+              <span class="text-sm" style="color: var(--color-warm-400);">/ year</span>
+              <span class="text-xs" style="color: var(--color-warm-500);">$4.08 / mo</span>
+            </div>
+          </div>
+
+          <!-- Save badge -->
+          <span
+            id="save-badge"
+            class="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full mb-3"
+            style="background-color: rgba(251,191,36,0.15); color: var(--color-accent-400);"
+          >
+            Save 32% vs monthly
+          </span>
+
+          <p class="text-sm" style="color: var(--color-warm-400);">
+            Cloud transcription + Pro features. Cancel anytime.
+          </p>
         </div>
 
-        <ul class="space-y-3 text-sm mb-8" style="color: var(--color-text-muted);">
+        <ul class="space-y-3 text-sm mb-6" style="color: var(--color-warm-300);">
           {[
             'Everything in Free',
-            'Managed cloud transcription (no keys)',
-            'Sub-1% word error rate',
-            'AI cleanup included (no extra key)',
+            'Lagos Pro Cloud — no API keys needed',
+            'Custom vocabularies & personal dictionary',
+            'AI cleanup included (no OpenAI key required)',
             'Priority support',
             'Early access to new features',
           ].map(item => (
-            <li class="flex items-start gap-2">
-              <span style="color: var(--color-accent-600); font-weight: 600;" aria-hidden="true">✓</span>
+            <li class="flex items-start gap-2.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 5" stroke="#f59e0b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               {item}
             </li>
           ))}
         </ul>
 
-        <div>
-          <p class="text-sm font-medium mb-3" style="color: var(--color-text);">
-            Join the waitlist — be the first to know when it launches.
-          </p>
-          <NewsletterForm type="waitlist" buttonText="Join waitlist" />
+        <!-- Lifetime option -->
+        <div
+          class="rounded-xl p-4 mb-6 text-sm"
+          style="background-color: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);"
+        >
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-semibold" style="color: var(--color-warm-100);">Lifetime access</span>
+            <span class="font-bold text-lg" style="color: var(--color-warm-50);">$99</span>
+          </div>
+          <p style="color: var(--color-warm-500);">One-time payment. All future Pro features included.</p>
         </div>
-      </Card>
+
+        <div>
+          <p class="text-sm font-medium mb-3" style="color: var(--color-warm-300);">
+            Join the waitlist — be first when it launches.
+          </p>
+          <NewsletterForm type="waitlist" buttonText="Join the waitlist" />
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FAQ -->
   <section class="py-20 px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl">
-      <h2 class="text-3xl font-bold mb-10 text-center" style="color: var(--color-text);">Pricing FAQ</h2>
-      <div class="space-y-6">
+      <h2 class="text-3xl font-bold mb-10 text-center" style="color: var(--color-text); letter-spacing: -0.02em;">
+        Pricing FAQ
+      </h2>
+      <div class="space-y-3">
         {[
           {
             q: 'Is the free tier really free forever?',
-            a: 'Yes. Apple Speech and WhisperKit local AI are fully supported in the free tier and will always be free. The BYOK tier is also free — you only pay your own API provider directly.',
+            a: 'Yes. Apple Speech, WhisperKit local AI, and BYOK are fully supported in the free tier and will always be free. Local engines have no server costs — there\'s nothing to charge for.',
           },
           {
-            q: 'What is Lagos Cloud and when is it coming?',
-            a: 'Lagos Cloud is a managed transcription service — you get cloud-grade accuracy without managing your own API keys or running local models. Pricing and timeline are being finalized. Join the waitlist above to get notified first.',
+            q: 'What is Lagos Pro and when is it coming?',
+            a: 'Lagos Pro adds managed cloud transcription (no API keys needed), custom vocabularies, and AI cleanup included. We\'re finalizing pricing and infrastructure. Join the waitlist above to get notified first and receive a launch discount.',
           },
           {
-            q: 'Will Lagos Cloud require an account?',
-            a: 'Lagos Cloud will require an account to manage your subscription. The free tier (Apple Speech and WhisperKit) will remain account-free.',
+            q: 'What\'s included in the lifetime plan?',
+            a: 'A one-time $99 payment gives you all current and future Lagos Pro features, forever. No recurring charges. This is our way of recognizing that not everyone wants a subscription — especially accessibility users who depend on the app daily.',
           },
           {
-            q: 'Can I use my own OpenAI or Deepgram key?',
-            a: 'Absolutely. Lagos supports OpenAI, Deepgram, AssemblyAI, Google Cloud Speech, and Wispr Flow via BYOK. Your keys are stored securely in the macOS Keychain.',
+            q: 'Will Lagos Pro require an account?',
+            a: 'Yes — Lagos Pro requires an account to manage your subscription. The free tier (Apple Speech + WhisperKit) remains completely account-free.',
+          },
+          {
+            q: 'Can I still use my own API keys with Lagos Pro?',
+            a: 'Absolutely. BYOK support for OpenAI, Deepgram, AssemblyAI, Google Cloud, and Wispr Flow stays in the free tier. Lagos Pro just adds a managed option for those who don\'t want to deal with API keys.',
           },
         ].map(item => (
           <details class="group rounded-xl border" style="border-color: var(--color-border);">
@@ -145,3 +244,24 @@ import NewsletterForm from '../components/NewsletterForm.astro';
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const toggle = document.getElementById('billing-toggle');
+  const cards  = document.getElementById('pricing-cards');
+  const btns   = toggle?.querySelectorAll<HTMLButtonElement>('button');
+
+  btns?.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const period = btn.dataset.period;
+      btns.forEach(b => {
+        b.dataset.active = String(b.dataset.period === period);
+        b.setAttribute('aria-pressed', String(b.dataset.period === period));
+      });
+      if (period === 'annual') {
+        cards?.classList.add('is-annual');
+      } else {
+        cards?.classList.remove('is-annual');
+      }
+    });
+  });
+</script>
