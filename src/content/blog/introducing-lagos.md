@@ -55,4 +55,4 @@ Lagos 1.3.2 is out today. We're actively working on:
 - **Per-app language profiles** — auto-switch languages based on which app you're in
 - **Custom cleanup templates** — save prompt templates for different use cases
 
-[Download Lagos for free](/features#download) and let us know what you think. We're on [Discord](https://discord.gg/PLACEHOLDER) and always open to feedback.
+[Download Lagos for free](/features#download) and let us know what you think. We're on [Discord](https://discord.gg/YPJJQsZV) and always open to feedback.

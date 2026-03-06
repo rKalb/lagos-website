@@ -25,7 +25,7 @@ export default defineConfig({
         },
       ],
       social: [
-        { icon: 'discord', label: 'Discord', href: 'https://discord.gg/PLACEHOLDER' },
+        { icon: 'discord', label: 'Discord', href: 'https://discord.gg/YPJJQsZV' },
         { icon: 'github', label: 'GitHub', href: 'https://github.com/rKalb' },
       ],
       sidebar: [

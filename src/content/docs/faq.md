@@ -90,4 +90,4 @@ Lagos uses Sparkle for automatic updates. You'll see an in-app notification when
 
 ## Contact
 
-Still have questions? [Contact support](/support) or join our [Discord community](https://discord.gg/PLACEHOLDER).
+Still have questions? [Contact support](/support) or join our [Discord community](https://discord.gg/YPJJQsZV).
