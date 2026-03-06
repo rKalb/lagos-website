@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import { getLatestDownloadUrl } from '../lib/version';
 
 interface Props {
   title: string;
@@ -17,10 +16,6 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const downloadUrl =
-  import.meta.env.LAGOS_DOWNLOAD_URL ??
-  (await getLatestDownloadUrl()) ??
-  'https://github.com/rKalb/lagos-releases/releases/latest';
 
 const navLinks = [
   { href: '/features', label: 'Features' },
@@ -102,9 +97,9 @@ const navLinks = [
           ))}
         </nav>
 
-        <!-- Download CTA -->
+        <!-- Download CTA (links to homepage download section with email gate) -->
         <a
-          href={downloadUrl}
+          href="/#download"
           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold no-underline transition-all hover:opacity-90 active:scale-95"
           style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
           aria-label="Download Lagos for Mac"
@@ -146,7 +141,7 @@ const navLinks = [
             </a>
           ))}
           <a
-            href={downloadUrl}
+            href="/#download"
             class="mt-2 px-3 py-2 rounded-lg text-sm font-semibold text-center no-underline"
             style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
           >

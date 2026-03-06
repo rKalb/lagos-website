@@ -1,17 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import DownloadButton from '../components/DownloadButton.astro';
+import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
-import { getLatestVersion, getLatestDownloadUrl } from '../lib/version';
-
-const [version, downloadUrl] = await Promise.all([
-  getLatestVersion(),
-  getLatestDownloadUrl(),
-]);
-const resolvedDownloadUrl =
-  import.meta.env.LAGOS_DOWNLOAD_URL ??
-  downloadUrl ??
-  'https://github.com/rKalb/lagos-releases/releases/latest';
 ---
 
 <style>
@@ -81,7 +71,7 @@ const resolvedDownloadUrl =
       </p>
 
       <div class="flex justify-center mb-16">
-        <DownloadButton size="lg" />
+        <EmailGatedDownload size="lg" />
       </div>
     </div>
 
@@ -434,22 +424,8 @@ const resolvedDownloadUrl =
         Free forever. No account, no subscription, no catch.
       </p>
       <div class="flex justify-center">
-        <a
-          href={resolvedDownloadUrl}
-          class="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold no-underline transition-all hover:opacity-90 active:scale-95"
-          style="background-color: var(--color-accent-500); color: var(--color-warm-900); box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset, 0 4px 16px rgba(245,158,11,0.35);"
-          aria-label="Download Lagos for Mac — Free"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path d="M10 14.5L4.5 9H8V3h4v6h3.5L10 14.5z"/>
-            <rect x="3" y="16" width="14" height="2" rx="1"/>
-          </svg>
-          Download for Mac — Free
-        </a>
+        <EmailGatedDownload size="lg" theme="dark" />
       </div>
-      <p class="mt-4 text-sm" style="color: var(--color-warm-600);">
-        macOS 13 Ventura or later &bull; Apple Silicon &amp; Intel
-      </p>
     </div>
   </section>
 

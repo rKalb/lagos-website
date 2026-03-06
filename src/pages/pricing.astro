@@ -1,12 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
-import { getLatestDownloadUrl } from '../lib/version';
-
-const downloadUrl =
-  import.meta.env.LAGOS_DOWNLOAD_URL ??
-  (await getLatestDownloadUrl()) ??
-  'https://github.com/rKalb/lagos-releases/releases/latest';
+import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 ---
 
 <style>
@@ -36,11 +31,6 @@ const downloadUrl =
   [data-billing="lifetime"] .price-view[data-period="monthly"],
   [data-billing="lifetime"] .price-view[data-period="annual"] { display: none; }
 
-  /* Email-gated download */
-  .download-gate-form { display: flex; }
-  .download-gate-success { display: none; }
-  .download-gate.is-unlocked .download-gate-form { display: none; }
-  .download-gate.is-unlocked .download-gate-success { display: flex; }
 </style>
 
 <BaseLayout
@@ -117,54 +107,7 @@ const downloadUrl =
         </ul>
 
         <!-- Email-gated download -->
-        <div class="download-gate" id="download-gate" data-download-url={downloadUrl}>
-          <div class="download-gate-form flex-col gap-2">
-            <p class="text-xs mb-2" style="color: var(--color-text-muted);">
-              Enter your email to download — we'll keep you updated on new releases.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input
-                id="download-email"
-                type="email"
-                placeholder="you@example.com"
-                required
-                autocomplete="email"
-                class="flex-1 px-4 py-2.5 rounded-lg text-sm border"
-                style="background-color: var(--color-bg); border-color: var(--color-border); color: var(--color-text); outline: none;"
-              />
-              <button
-                id="download-submit"
-                type="button"
-                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold no-underline transition-all hover:opacity-90 active:scale-95 whitespace-nowrap"
-                style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
-              >
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path d="M10 14.5L4.5 9H8V3h4v6h3.5L10 14.5z"/>
-                  <rect x="3" y="16" width="14" height="2" rx="1"/>
-                </svg>
-                Download free
-              </button>
-            </div>
-            <p id="download-error" class="text-xs hidden" style="color: #dc2626;"></p>
-          </div>
-          <div class="download-gate-success flex-col items-start gap-2">
-            <a
-              href={downloadUrl}
-              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold no-underline transition-all hover:opacity-90 active:scale-95 shadow-sm"
-              style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
-              aria-label="Download Lagos for Mac"
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M10 14.5L4.5 9H8V3h4v6h3.5L10 14.5z"/>
-                <rect x="3" y="16" width="14" height="2" rx="1"/>
-              </svg>
-              Download Lagos for Mac
-            </a>
-            <p class="text-xs" style="color: var(--color-text-muted);">
-              macOS 13 Ventura or later &bull; Apple Silicon &amp; Intel &bull; Free
-            </p>
-          </div>
-        </div>
+        <EmailGatedDownload size="md" />
       </div>
 
       <!-- Lagos Pro -->
@@ -426,57 +369,4 @@ const downloadUrl =
     });
   });
 
-  // Email-gated download
-  const gate = document.getElementById('download-gate');
-  const emailInput = document.getElementById('download-email') as HTMLInputElement;
-  const submitBtn = document.getElementById('download-submit') as HTMLButtonElement;
-  const errorEl = document.getElementById('download-error');
-
-  submitBtn?.addEventListener('click', async () => {
-    const email = emailInput?.value?.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      if (errorEl) {
-        errorEl.textContent = 'Please enter a valid email address.';
-        errorEl.classList.remove('hidden');
-      }
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting…';
-    if (errorEl) errorEl.classList.add('hidden');
-
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, type: 'newsletter' }),
-      });
-
-      if (res.ok) {
-        gate?.classList.add('is-unlocked');
-        // Auto-start download after email capture
-        const url = gate?.dataset.downloadUrl;
-        if (url) window.location.href = url;
-      } else {
-        throw new Error('Failed');
-      }
-    } catch {
-      if (errorEl) {
-        errorEl.textContent = 'Something went wrong. Please try again.';
-        errorEl.classList.remove('hidden');
-      }
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Download free';
-    }
-  });
-
-  // Allow Enter key in email field
-  emailInput?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitBtn?.click();
-    }
-  });
 </script>
