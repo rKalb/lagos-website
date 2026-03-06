@@ -52,20 +52,19 @@ const resolvedDownloadUrl =
   >
     <div class="mx-auto max-w-3xl text-center">
 
-      <!-- Version badge -->
+      <!-- Beta promo badge -->
       <a
-        href="/changelog"
-        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold mb-8 border no-underline transition-opacity hover:opacity-80"
-        style="background-color: #fef3c7; border-color: rgba(245,158,11,0.3); color: var(--color-accent-800);"
-        aria-label={`Lagos version ${version} release notes`}
+        href="/pricing"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-8 border no-underline transition-opacity hover:opacity-80"
+        style="background-color: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); color: #059669;"
       >
         <span
-          class="inline-block w-1.5 h-1.5 rounded-full"
-          style="background-color: var(--color-accent-500);"
+          class="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
+          style="background-color: #10b981;"
           aria-hidden="true"
         ></span>
-        Version {version} — Now available
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" class="opacity-50">
+        Join the beta by March 31 — get 2 years of Pro free
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" class="opacity-50">
           <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
       </a>
@@ -454,14 +453,23 @@ const resolvedDownloadUrl =
     </div>
   </section>
 
-  <!-- ── Newsletter signup ── -->
+  <!-- ── Beta signup ── -->
   <section class="py-20 px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-md text-center">
-      <h2 class="text-2xl font-bold mb-2" style="color: var(--color-text); letter-spacing: -0.02em;">Stay in the loop</h2>
+    <div class="mx-auto max-w-lg text-center">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4"
+        style="background-color: rgba(16,185,129,0.1); color: #059669;"
+      >
+        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background-color: #10b981;" aria-hidden="true"></span>
+        Limited time offer
+      </div>
+      <h2 class="text-2xl font-bold mb-2" style="color: var(--color-text); letter-spacing: -0.02em;">
+        Join the beta — get 2 years of Pro free
+      </h2>
       <p class="text-sm mb-8" style="color: var(--color-text-muted);">
-        New features, tips, and Lagos Pro launch — straight to your inbox. No spam, ever.
+        Everyone who joins the beta before March 31, 2026 gets Lagos Pro free for 2 years when it launches. No credit card required.
       </p>
-      <NewsletterForm type="newsletter" />
+      <NewsletterForm type="waitlist" buttonText="Join the beta" />
     </div>
   </section>
 

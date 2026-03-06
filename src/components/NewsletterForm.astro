@@ -80,7 +80,7 @@ const formId = `form-${type}-${Math.random().toString(36).slice(2, 7)}`;
         if (res.ok) {
           if (statusEl) {
             statusEl.textContent = formType === 'waitlist'
-              ? "You're on the waitlist! We'll let you know when Lagos Pro launches."
+              ? "You're in! You'll get 2 years of Lagos Pro free when it launches."
               : "You're subscribed. Thanks for following along!";
             statusEl.style.color = 'var(--color-accent-700)';
             statusEl.classList.remove('hidden');

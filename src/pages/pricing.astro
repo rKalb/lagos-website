@@ -50,6 +50,26 @@ import NewsletterForm from '../components/NewsletterForm.astro';
     </div>
   </section>
 
+  <!-- Beta promo banner -->
+  <section class="pb-10 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div
+        class="rounded-xl p-5 sm:p-6 text-center border"
+        style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.02) 100%); border-color: rgba(16,185,129,0.2);"
+      >
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full animate-pulse" style="background-color: #10b981;" aria-hidden="true"></span>
+            <span class="text-sm font-semibold" style="color: #059669;">Beta offer</span>
+          </div>
+          <p class="text-sm font-medium" style="color: var(--color-text);">
+            Join the beta before <strong>March 31, 2026</strong> and get <strong>2 years of Lagos Pro free</strong> when it launches.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing cards -->
   <section class="pb-12 px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl grid md:grid-cols-2 gap-8 items-start">
@@ -97,12 +117,13 @@ import NewsletterForm from '../components/NewsletterForm.astro';
         id="pro-card"
         data-billing="annual"
       >
-        <!-- Coming soon badge -->
+        <!-- Beta badge -->
         <div
-          class="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full"
-          style="background-color: rgba(251,191,36,0.15); color: var(--color-accent-400); border: 1px solid rgba(251,191,36,0.25);"
+          class="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5"
+          style="background-color: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.25);"
         >
-          Coming soon
+          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background-color: #10b981;" aria-hidden="true"></span>
+          Beta — join by Mar 31
         </div>
 
         <div class="mb-6">
@@ -214,11 +235,21 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           ))}
         </ul>
 
-        <div>
-          <p class="text-sm font-medium mb-3" style="color: var(--color-warm-300);">
-            Join the waitlist — be first when it launches.
+        <!-- Beta offer -->
+        <div
+          class="rounded-xl p-4 mb-6 text-sm"
+          style="background-color: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2);"
+        >
+          <p class="font-semibold mb-1" style="color: #34d399;">
+            Join the beta by March 31 = 2 years free
           </p>
-          <NewsletterForm type="waitlist" buttonText="Join the waitlist" />
+          <p style="color: var(--color-warm-400);">
+            Every beta user gets Lagos Pro free for 2 full years when it launches. No strings attached.
+          </p>
+        </div>
+
+        <div>
+          <NewsletterForm type="waitlist" buttonText="Join the beta" />
         </div>
       </div>
     </div>
@@ -283,6 +314,10 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           {
             q: 'Can I still use my own API keys with Lagos Pro?',
             a: 'Absolutely. BYOK support for OpenAI, Deepgram, AssemblyAI, Google Cloud, and Wispr Flow stays in the free tier. Lagos Pro just adds a managed option for those who don\'t want to deal with API keys.',
+          },
+          {
+            q: 'What\'s the beta offer?',
+            a: 'Everyone who joins the beta before March 31, 2026 gets Lagos Pro completely free for 2 years after launch. No credit card required to join — just enter your email above. This is our way of thanking early supporters who help us shape the product.',
           },
           {
             q: 'Is there a free trial?',
