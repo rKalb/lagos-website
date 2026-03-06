@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import DownloadButton from '../components/DownloadButton.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
+import { getLatestDownloadUrl } from '../lib/version';
+
+const downloadUrl =
+  import.meta.env.LAGOS_DOWNLOAD_URL ??
+  (await getLatestDownloadUrl()) ??
+  'https://github.com/rKalb/lagos-releases/releases/latest';
 ---
 
 <style>
@@ -16,11 +21,9 @@ import NewsletterForm from '../components/NewsletterForm.astro';
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
 
-  /* Price display — default is monthly */
+  /* Price display — default to annual */
   .price-view { display: none; }
-  .price-view[data-period="monthly"] { display: block; }
 
-  /* JS toggles via data attribute on the card */
   [data-billing="monthly"] .price-view[data-period="monthly"] { display: block; }
   [data-billing="monthly"] .price-view[data-period="annual"],
   [data-billing="monthly"] .price-view[data-period="lifetime"] { display: none; }
@@ -32,6 +35,12 @@ import NewsletterForm from '../components/NewsletterForm.astro';
   [data-billing="lifetime"] .price-view[data-period="lifetime"] { display: block; }
   [data-billing="lifetime"] .price-view[data-period="monthly"],
   [data-billing="lifetime"] .price-view[data-period="annual"] { display: none; }
+
+  /* Email-gated download */
+  .download-gate-form { display: flex; }
+  .download-gate-success { display: none; }
+  .download-gate.is-unlocked .download-gate-form { display: none; }
+  .download-gate.is-unlocked .download-gate-success { display: flex; }
 </style>
 
 <BaseLayout
@@ -74,7 +83,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
   <section class="pb-12 px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl grid md:grid-cols-2 gap-8 items-start">
 
-      <!-- Free tier (de-emphasized) -->
+      <!-- Free tier -->
       <div
         class="rounded-2xl border p-8"
         style="background-color: var(--color-surface); border-color: var(--color-border); box-shadow: 0 1px 3px 0 rgba(0,0,0,0.07);"
@@ -107,10 +116,58 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           ))}
         </ul>
 
-        <DownloadButton size="md" label="Download free" />
+        <!-- Email-gated download -->
+        <div class="download-gate" id="download-gate" data-download-url={downloadUrl}>
+          <div class="download-gate-form flex-col gap-2">
+            <p class="text-xs mb-2" style="color: var(--color-text-muted);">
+              Enter your email to download — we'll keep you updated on new releases.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input
+                id="download-email"
+                type="email"
+                placeholder="you@example.com"
+                required
+                autocomplete="email"
+                class="flex-1 px-4 py-2.5 rounded-lg text-sm border"
+                style="background-color: var(--color-bg); border-color: var(--color-border); color: var(--color-text); outline: none;"
+              />
+              <button
+                id="download-submit"
+                type="button"
+                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold no-underline transition-all hover:opacity-90 active:scale-95 whitespace-nowrap"
+                style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
+              >
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M10 14.5L4.5 9H8V3h4v6h3.5L10 14.5z"/>
+                  <rect x="3" y="16" width="14" height="2" rx="1"/>
+                </svg>
+                Download free
+              </button>
+            </div>
+            <p id="download-error" class="text-xs hidden" style="color: #dc2626;"></p>
+          </div>
+          <div class="download-gate-success flex-col items-start gap-2">
+            <a
+              href={downloadUrl}
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold no-underline transition-all hover:opacity-90 active:scale-95 shadow-sm"
+              style="background-color: var(--color-accent-500); color: var(--color-warm-900);"
+              aria-label="Download Lagos for Mac"
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M10 14.5L4.5 9H8V3h4v6h3.5L10 14.5z"/>
+                <rect x="3" y="16" width="14" height="2" rx="1"/>
+              </svg>
+              Download Lagos for Mac
+            </a>
+            <p class="text-xs" style="color: var(--color-text-muted);">
+              macOS 13 Ventura or later &bull; Apple Silicon &amp; Intel &bull; Free
+            </p>
+          </div>
+        </div>
       </div>
 
-      <!-- Lagos Pro (highlighted) -->
+      <!-- Lagos Pro -->
       <div
         class="rounded-2xl border p-8 relative overflow-hidden"
         style="background-color: var(--color-warm-900); border-color: rgba(255,255,255,0.1); box-shadow: 0 8px 32px -8px rgba(0,0,0,0.3);"
@@ -129,9 +186,9 @@ import NewsletterForm from '../components/NewsletterForm.astro';
         <div class="mb-6">
           <h2 class="text-xl font-bold mb-4" style="color: var(--color-warm-50);">Lagos Pro</h2>
 
-          <!-- 3-option segmented control -->
+          <!-- 3-option segmented control (clean, no inline badge) -->
           <div
-            class="billing-seg inline-flex items-center gap-0.5 p-1 rounded-lg mb-5 w-full"
+            class="billing-seg flex items-center gap-0.5 p-1 rounded-lg mb-3"
             style="background-color: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);"
             id="billing-seg"
             role="group"
@@ -152,10 +209,6 @@ import NewsletterForm from '../components/NewsletterForm.astro';
               aria-pressed="true"
             >
               Annual
-              <span
-                class="ml-1 text-xs font-semibold px-1.5 py-0.5 rounded-full"
-                style="background-color: rgba(251,191,36,0.2); color: var(--color-accent-400); font-size: 10px;"
-              >Best value</span>
             </button>
             <button
               data-period="lifetime"
@@ -167,38 +220,46 @@ import NewsletterForm from '../components/NewsletterForm.astro';
             </button>
           </div>
 
+          <!-- Badge below segmented control (changes per selection) -->
+          <div class="price-view mb-4" data-period="annual">
+            <span
+              class="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full"
+              style="background-color: rgba(251,191,36,0.15); color: var(--color-accent-400);"
+            >
+              Best value — save 32%
+            </span>
+          </div>
+          <div class="price-view mb-4" data-period="monthly">
+            <div class="h-6"></div>
+          </div>
+          <div class="price-view mb-4" data-period="lifetime">
+            <span
+              class="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full"
+              style="background-color: rgba(16,185,129,0.15); color: #34d399;"
+            >
+              Launch price — going up soon
+            </span>
+          </div>
+
           <!-- Monthly price -->
           <div class="price-view" data-period="monthly">
             <div class="flex items-end gap-1 mb-2">
               <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$6</span>
               <span class="text-sm pb-2" style="color: var(--color-warm-400);">/ month</span>
             </div>
-            <p class="text-xs mb-1" style="color: var(--color-warm-500);">
-              $72 / year if billed monthly
-            </p>
-            <p class="text-sm" style="color: var(--color-warm-400);">
-              Cancel anytime.
+            <p class="text-xs" style="color: var(--color-warm-500);">
+              $72 / year if billed monthly &bull; Cancel anytime
             </p>
           </div>
 
           <!-- Annual price -->
           <div class="price-view" data-period="annual">
-            <div class="flex items-end gap-2 mb-2 flex-wrap">
+            <div class="flex items-end gap-2 mb-2">
               <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$4.08</span>
               <span class="text-sm pb-2" style="color: var(--color-warm-400);">/ month</span>
             </div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs" style="color: var(--color-warm-500);">Billed as $49 / year</span>
-              <span class="text-xs line-through" style="color: var(--color-warm-600);">$72</span>
-              <span
-                class="inline-flex items-center text-xs font-semibold px-2 py-0.5 rounded-full"
-                style="background-color: rgba(251,191,36,0.15); color: var(--color-accent-400);"
-              >
-                Save 32%
-              </span>
-            </div>
-            <p class="text-sm" style="color: var(--color-warm-400);">
-              Cancel anytime.
+            <p class="text-xs" style="color: var(--color-warm-500);">
+              Billed as $49 / year <span class="line-through ml-1">$72</span> &bull; Cancel anytime
             </p>
           </div>
 
@@ -208,11 +269,8 @@ import NewsletterForm from '../components/NewsletterForm.astro';
               <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$99</span>
               <span class="text-sm pb-2" style="color: var(--color-warm-400);">one-time</span>
             </div>
-            <p class="text-xs mb-1" style="color: var(--color-warm-500);">
+            <p class="text-xs" style="color: var(--color-warm-500);">
               Pay once, use forever. All future Pro features included.
-            </p>
-            <p class="text-sm" style="color: var(--color-warm-400);">
-              Launch price — going up after early access.
             </p>
           </div>
         </div>
@@ -300,6 +358,10 @@ import NewsletterForm from '../components/NewsletterForm.astro';
             a: 'Lagos Pro adds managed cloud transcription (no API keys needed), custom vocabularies, a personal dictionary, and AI text cleanup. You also get priority support and early access to new features.',
           },
           {
+            q: 'What\'s the beta offer?',
+            a: 'Everyone who joins the beta before March 31, 2026 gets Lagos Pro completely free for 2 years after launch. No credit card required to join — just enter your email. This is our way of thanking early supporters who help us shape the product.',
+          },
+          {
             q: 'What\'s included in the lifetime plan?',
             a: 'A one-time $99 payment gives you all current and future Lagos Pro features, forever. No recurring charges. We offer this because not everyone wants a subscription — especially accessibility users who depend on the app daily.',
           },
@@ -314,10 +376,6 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           {
             q: 'Can I still use my own API keys with Lagos Pro?',
             a: 'Absolutely. BYOK support for OpenAI, Deepgram, AssemblyAI, Google Cloud, and Wispr Flow stays in the free tier. Lagos Pro just adds a managed option for those who don\'t want to deal with API keys.',
-          },
-          {
-            q: 'What\'s the beta offer?',
-            a: 'Everyone who joins the beta before March 31, 2026 gets Lagos Pro completely free for 2 years after launch. No credit card required to join — just enter your email above. This is our way of thanking early supporters who help us shape the product.',
           },
           {
             q: 'Is there a free trial?',
@@ -351,6 +409,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
 </BaseLayout>
 
 <script>
+  // Billing segmented control
   const seg = document.getElementById('billing-seg');
   const card = document.getElementById('pro-card');
   const btns = seg?.querySelectorAll<HTMLButtonElement>('button');
@@ -359,15 +418,65 @@ import NewsletterForm from '../components/NewsletterForm.astro';
     btn.addEventListener('click', () => {
       const period = btn.dataset.period;
       if (!period) return;
-
-      // Update segmented control state
       btns.forEach(b => {
         b.dataset.active = String(b.dataset.period === period);
         b.setAttribute('aria-pressed', String(b.dataset.period === period));
       });
-
-      // Update card billing attribute — CSS handles price visibility
       card?.setAttribute('data-billing', period);
     });
+  });
+
+  // Email-gated download
+  const gate = document.getElementById('download-gate');
+  const emailInput = document.getElementById('download-email') as HTMLInputElement;
+  const submitBtn = document.getElementById('download-submit') as HTMLButtonElement;
+  const errorEl = document.getElementById('download-error');
+
+  submitBtn?.addEventListener('click', async () => {
+    const email = emailInput?.value?.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (errorEl) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        errorEl.classList.remove('hidden');
+      }
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+    if (errorEl) errorEl.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, type: 'newsletter' }),
+      });
+
+      if (res.ok) {
+        gate?.classList.add('is-unlocked');
+        // Auto-start download after email capture
+        const url = gate?.dataset.downloadUrl;
+        if (url) window.location.href = url;
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      if (errorEl) {
+        errorEl.textContent = 'Something went wrong. Please try again.';
+        errorEl.classList.remove('hidden');
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Download free';
+    }
+  });
+
+  // Allow Enter key in email field
+  emailInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitBtn?.click();
+    }
   });
 </script>
