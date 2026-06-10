@@ -38,10 +38,9 @@ export default defineConfig({
         {
           label: 'Transcription Engines',
           items: [
-            { label: 'Apple Speech (Level 1)', slug: 'engines/apple-speech' },
-            { label: 'WhisperKit — Local AI (Level 2)', slug: 'engines/whisperkit' },
-            { label: 'Lagos Cloud (Level 3)', slug: 'engines/lagos-cloud' },
-            { label: 'Bring Your Own Key (Level 4)', slug: 'engines/byok' },
+            { label: 'Apple Speech', slug: 'engines/apple-speech' },
+            { label: 'WhisperKit — Local AI', slug: 'engines/whisperkit' },
+            { label: 'Parakeet (Beta)', slug: 'engines/parakeet' },
           ],
         },
         { label: 'Keyboard Shortcuts', slug: 'shortcuts' },

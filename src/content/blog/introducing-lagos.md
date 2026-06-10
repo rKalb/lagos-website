@@ -29,14 +29,12 @@ We couldn't find one that did all four. So we built it.
 
 ## How it works
 
-Lagos supports four transcription levels:
+Lagos ships multiple transcription engines, all running on your Mac:
 
 - **Apple Speech** — instant, built-in, zero setup
-- **WhisperKit** — local AI, ~1% word error rate, completely private
-- **Lagos Pro Cloud** — coming soon, managed cloud accuracy without API keys
-- **BYOK** — bring your own OpenAI, Deepgram, AssemblyAI, Google Cloud, or Wispr Flow key
+- **WhisperKit** — local AI, ~1% word error rate with the Turbo model, completely private
 
-You start at Level 1 and upgrade when you want more. The app doesn't push you anywhere.
+You start with zero setup and upgrade when you want more. The app doesn't push you anywhere. *(Update, June 2026: Lagos now also ships the optional [Parakeet engine](/engines/parakeet) — even faster and more accurate for English, still 100% on-device.)*
 
 ## Who it's for
 
@@ -49,10 +47,6 @@ Lagos works for anyone who types on a Mac and wants to talk instead. That includ
 
 ## What's next
 
-Lagos 1.3.2 is out today. We're actively working on:
+Lagos 1.3.2 is out today. We're actively working on reliability, accuracy, and the dictation ergonomics that make Lagos feel invisible — see the [changelog](/changelog) for what's shipped since this post.
 
-- **Lagos Pro Cloud** — managed cloud transcription, no key required
-- **Per-app language profiles** — auto-switch languages based on which app you're in
-- **Custom cleanup templates** — save prompt templates for different use cases
-
-[Download Lagos for free](/features#download) and let us know what you think. We're on [Discord](https://discord.gg/YPJJQsZV) and always open to feedback.
+[Download Lagos for free](/#download) and let us know what you think. We're on [Discord](https://discord.gg/YPJJQsZV) and always open to feedback.

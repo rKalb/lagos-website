@@ -4,82 +4,31 @@ import NewsletterForm from '../components/NewsletterForm.astro';
 import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 ---
 
-<style>
-  /* Segmented control */
-  .billing-seg button {
-    background-color: transparent;
-    color: var(--color-warm-500);
-  }
-  .billing-seg button[data-active="true"] {
-    background-color: rgba(255,255,255,0.12);
-    color: var(--color-warm-50);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
-
-  /* Price display — default to annual */
-  .price-view { display: none; }
-
-  [data-billing="monthly"] .price-view[data-period="monthly"] { display: block; }
-  [data-billing="monthly"] .price-view[data-period="annual"],
-  [data-billing="monthly"] .price-view[data-period="lifetime"] { display: none; }
-
-  [data-billing="annual"] .price-view[data-period="annual"] { display: block; }
-  [data-billing="annual"] .price-view[data-period="monthly"],
-  [data-billing="annual"] .price-view[data-period="lifetime"] { display: none; }
-
-  [data-billing="lifetime"] .price-view[data-period="lifetime"] { display: block; }
-  [data-billing="lifetime"] .price-view[data-period="monthly"],
-  [data-billing="lifetime"] .price-view[data-period="annual"] { display: none; }
-
-</style>
-
 <BaseLayout
   title="Pricing"
-  description="Lagos is free forever for local AI transcription. Lagos Pro adds cloud transcription and AI cleanup — starting at $4.08/mo."
+  description="Lagos is free forever — every local engine, unlimited dictation, no account, no word limits, no subscription."
 >
   <!-- Hero -->
   <section class="pt-20 pb-14 px-4 sm:px-6 lg:px-8 text-center">
     <div class="mx-auto max-w-2xl">
       <h1 class="text-5xl font-bold mb-5" style="color: var(--color-text); letter-spacing: -0.02em;">
-        Start free. Upgrade when you're ready.
+        Free forever.
       </h1>
       <p class="text-lg" style="color: var(--color-text-muted);">
-        Local AI dictation is free forever — no account, no limits. Lagos Pro adds cloud accuracy and extra features.
+        Everything that turns speech into text — capture, transcription, paste, history, every local engine — is free forever. Not a trial. Not a word quota.
       </p>
     </div>
   </section>
 
-  <!-- Beta promo banner -->
-  <section class="pb-10 px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl">
-      <div
-        class="rounded-xl p-5 sm:p-6 text-center border"
-        style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.02) 100%); border-color: rgba(16,185,129,0.2);"
-      >
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full animate-pulse" style="background-color: #10b981;" aria-hidden="true"></span>
-            <span class="text-sm font-semibold" style="color: #059669;">Beta offer</span>
-          </div>
-          <p class="text-sm font-medium" style="color: var(--color-text);">
-            Join the beta before <strong>March 31, 2026</strong> and get <strong>2 years of Lagos Pro free</strong> when it launches.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing cards -->
+  <!-- Free card -->
   <section class="pb-12 px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl grid md:grid-cols-2 gap-8 items-start">
-
-      <!-- Free tier -->
+    <div class="mx-auto max-w-xl">
       <div
         class="rounded-2xl border p-8"
         style="background-color: var(--color-surface); border-color: var(--color-border); box-shadow: 0 1px 3px 0 rgba(0,0,0,0.07);"
       >
         <div class="mb-6">
-          <h2 class="text-xl font-bold mb-1" style="color: var(--color-text);">Free</h2>
+          <h2 class="text-xl font-bold mb-1" style="color: var(--color-text);">Lagos</h2>
           <div class="flex items-end gap-1 my-4">
             <span class="text-5xl font-bold" style="color: var(--color-text); letter-spacing: -0.03em;">$0</span>
             <span class="text-sm pb-2" style="color: var(--color-text-muted);">forever</span>
@@ -89,13 +38,15 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 
         <ul class="space-y-3 text-sm mb-8" style="color: var(--color-text-muted);">
           {[
-            'Apple Speech — instant, built-in',
-            'WhisperKit local AI (up to ~1% word error rate)',
-            'Works 100% offline',
-            'Unlimited transcription history',
-            'Bring Your Own API Key (5 providers)',
+            'Hold-to-talk dictation in every app, system-wide',
+            'Double-tap lock mode for hands-free continuous dictation',
+            'Instant capture with ~0.45 s pre-roll — first words never clipped',
+            'All three engines: Apple Speech, WhisperKit, and Parakeet (Beta)',
+            '100% on-device — audio never leaves your Mac',
+            'Unlimited transcription history with full-text search',
             'Auto-detect + 12 languages',
-            'Keyboard shortcut customization',
+            'Media ducking, sound packs, customizable shortcut',
+            'Signed, notarized, auto-updating',
           ].map(item => (
             <li class="flex items-start gap-2.5">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5" aria-hidden="true">
@@ -106,151 +57,23 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           ))}
         </ul>
 
-        <!-- Email-gated download -->
+        <!-- Download -->
         <EmailGatedDownload size="md" />
       </div>
+    </div>
+  </section>
 
-      <!-- Lagos Pro -->
+  <!-- The promise -->
+  <section class="pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl">
       <div
-        class="rounded-2xl border p-8 relative overflow-hidden"
-        style="background-color: var(--color-warm-900); border-color: rgba(255,255,255,0.1); box-shadow: 0 8px 32px -8px rgba(0,0,0,0.3);"
-        id="pro-card"
-        data-billing="annual"
+        class="rounded-xl p-6 text-center border"
+        style="background: linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(245,158,11,0.02) 100%); border-color: var(--color-border);"
       >
-        <!-- Beta badge -->
-        <div
-          class="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5"
-          style="background-color: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.25);"
-        >
-          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background-color: #10b981;" aria-hidden="true"></span>
-          Beta — join by Mar 31
-        </div>
-
-        <div class="mb-6">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--color-warm-50);">Lagos Pro</h2>
-
-          <!-- 3-option segmented control (clean, no inline badge) -->
-          <div
-            class="billing-seg flex items-center gap-0.5 p-1 rounded-lg mb-3"
-            style="background-color: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);"
-            id="billing-seg"
-            role="group"
-            aria-label="Billing period"
-          >
-            <button
-              data-period="monthly"
-              data-active="false"
-              class="flex-1 px-3 py-2 rounded-md text-xs font-medium transition-all text-center"
-              aria-pressed="false"
-            >
-              Monthly
-            </button>
-            <button
-              data-period="annual"
-              data-active="true"
-              class="flex-1 px-3 py-2 rounded-md text-xs font-medium transition-all text-center"
-              aria-pressed="true"
-            >
-              Annual
-            </button>
-            <button
-              data-period="lifetime"
-              data-active="false"
-              class="flex-1 px-3 py-2 rounded-md text-xs font-medium transition-all text-center"
-              aria-pressed="false"
-            >
-              Lifetime
-            </button>
-          </div>
-
-          <!-- Badge below segmented control (changes per selection) -->
-          <div class="price-view mb-4" data-period="annual">
-            <span
-              class="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full"
-              style="background-color: rgba(251,191,36,0.15); color: var(--color-accent-400);"
-            >
-              Best value — save 32%
-            </span>
-          </div>
-          <div class="price-view mb-4" data-period="monthly">
-            <div class="h-6"></div>
-          </div>
-          <div class="price-view mb-4" data-period="lifetime">
-            <span
-              class="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full"
-              style="background-color: rgba(16,185,129,0.15); color: #34d399;"
-            >
-              Launch price — going up soon
-            </span>
-          </div>
-
-          <!-- Monthly price -->
-          <div class="price-view" data-period="monthly">
-            <div class="flex items-end gap-1 mb-2">
-              <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$6</span>
-              <span class="text-sm pb-2" style="color: var(--color-warm-400);">/ month</span>
-            </div>
-            <p class="text-xs" style="color: var(--color-warm-500);">
-              $72 / year if billed monthly &bull; Cancel anytime
-            </p>
-          </div>
-
-          <!-- Annual price -->
-          <div class="price-view" data-period="annual">
-            <div class="flex items-end gap-2 mb-2">
-              <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$4.08</span>
-              <span class="text-sm pb-2" style="color: var(--color-warm-400);">/ month</span>
-            </div>
-            <p class="text-xs" style="color: var(--color-warm-500);">
-              Billed as $49 / year <span class="line-through ml-1">$72</span> &bull; Cancel anytime
-            </p>
-          </div>
-
-          <!-- Lifetime price -->
-          <div class="price-view" data-period="lifetime">
-            <div class="flex items-end gap-1 mb-2">
-              <span class="text-5xl font-bold" style="color: var(--color-warm-50); letter-spacing: -0.03em;">$99</span>
-              <span class="text-sm pb-2" style="color: var(--color-warm-400);">one-time</span>
-            </div>
-            <p class="text-xs" style="color: var(--color-warm-500);">
-              Pay once, use forever. All future Pro features included.
-            </p>
-          </div>
-        </div>
-
-        <ul class="space-y-3 text-sm mb-6" style="color: var(--color-warm-300);">
-          {[
-            'Everything in Free',
-            'Lagos Pro Cloud — no API keys needed',
-            'AI cleanup included (no OpenAI key required)',
-            'Priority support',
-            'Early access to new features',
-          ].map(item => (
-            <li class="flex items-start gap-2.5">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5" aria-hidden="true">
-                <path d="M3 8l3.5 3.5L13 5" stroke="#f59e0b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              {item}
-            </li>
-          ))}
-        </ul>
-
-        <!-- Beta offer -->
-        <div
-          class="rounded-xl p-4 mb-6 text-sm"
-          style="background-color: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2);"
-        >
-          <p class="font-semibold mb-1" style="color: #34d399;">
-            Join the beta by March 31 = 2 years free
-          </p>
-          <p style="color: var(--color-warm-400);">
-            Every beta user gets Lagos Pro free for 2 full years when it launches. No strings attached.
-          </p>
-        </div>
-
-        <div>
-          <NewsletterForm type="waitlist" buttonText="Join the beta" />
-        </div>
+        <h2 class="text-base font-bold mb-2" style="color: var(--color-text);">How will Lagos make money?</h2>
+        <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">
+          Honestly: core dictation is free forever. Advanced AI writing features (smart modes, personal dictionary, context awareness) may become a <strong>one-time Pro purchase</strong> down the road — <strong>never a subscription, and never your audio</strong>. We're saying this now so there's no rug-pull later.
+        </p>
       </div>
     </div>
   </section>
@@ -263,21 +86,21 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="shrink-0" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Audio never leaves your Mac with local engines
+          Audio never leaves your Mac
         </div>
         <div class="flex items-center gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="shrink-0" aria-hidden="true">
             <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.75"/>
           </svg>
-          Cancel anytime, no questions asked
+          No word limits, ever
         </div>
         <div class="flex items-center gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="shrink-0" aria-hidden="true">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="1.75"/>
             <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
           </svg>
-          API keys stored in macOS Keychain
+          Signed &amp; notarized by Apple
         </div>
       </div>
     </div>
@@ -292,36 +115,28 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
       <div class="space-y-3">
         {[
           {
-            q: 'Is the free tier really free forever?',
-            a: 'Yes. Apple Speech, WhisperKit local AI, and BYOK are fully supported in the free tier and will always be free. Local engines run on your hardware — there\'s nothing to charge for.',
+            q: 'Is Lagos really free forever?',
+            a: 'Yes. Everything that turns speech into text — hold-to-talk, lock mode, all three local engines (Apple Speech, WhisperKit, Parakeet), history with search, sound packs — is free forever. Local engines run on your hardware; there is nothing to meter.',
           },
           {
-            q: 'What does Lagos Pro add?',
-            a: 'Lagos Pro adds managed cloud transcription (no API keys needed) and AI text cleanup without requiring your own OpenAI key. You also get priority support and early access to new features.',
+            q: 'Then how do you pay for this?',
+            a: 'Right now we don\'t — Lagos is a labor of love by a solo developer. If advanced AI writing features ship later (smart modes, personal dictionary, context awareness), they may become a one-time Pro purchase, like VoiceInk or MacWhisper. Never a subscription, never an account requirement for the free core, and never your audio.',
           },
           {
-            q: 'What\'s the beta offer?',
-            a: 'Everyone who joins the beta before March 31, 2026 gets Lagos Pro completely free for 2 years after launch. No credit card required to join — just enter your email. This is our way of thanking early supporters who help us shape the product.',
+            q: 'Do I need an account?',
+            a: 'No. There is no account, no sign-in, and no license key. Download the DMG, drag to Applications, grant two permissions, and start dictating. The email box on the download button is optional — it just subscribes you to release notes.',
           },
           {
-            q: 'What\'s included in the lifetime plan?',
-            a: 'A one-time $99 payment gives you all current and future Lagos Pro features, forever. No recurring charges. We offer this because not everyone wants a subscription — especially accessibility users who depend on the app daily.',
+            q: 'What are the word or usage limits?',
+            a: 'There are none. Some competitors cap free dictation (for example, 2,000 words per week) because every word costs them server money. Lagos transcribes on your Mac, so your usage costs us nothing.',
           },
           {
-            q: 'Can I switch between monthly, annual, and lifetime?',
-            a: 'Yes. You can upgrade from monthly to annual at any time and receive prorated credit. You can also switch to lifetime whenever you want — your remaining subscription is credited toward the one-time price.',
+            q: 'Does Lagos collect any data?',
+            a: 'Lagos never collects your audio or transcriptions. It does send anonymous usage analytics (which features are used, crash reports) by default — disclosed during onboarding, with a kill switch in Settings → Privacy. See the Privacy Policy for the full picture.',
           },
           {
-            q: 'Will Lagos Pro require an account?',
-            a: 'Yes — Lagos Pro requires an account to manage your subscription. The free tier (Apple Speech + WhisperKit + BYOK) remains completely account-free.',
-          },
-          {
-            q: 'Can I still use my own API keys with Lagos Pro?',
-            a: 'Absolutely. BYOK support for OpenAI, Deepgram, AssemblyAI, Google Cloud, and Wispr Flow stays in the free tier. Lagos Pro just adds a managed option for those who don\'t want to deal with API keys.',
-          },
-          {
-            q: 'Is there a free trial?',
-            a: 'The free tier is unlimited and never expires. When Lagos Pro launches, we plan to offer a 7-day free trial so you can experience cloud transcription before committing.',
+            q: 'What Macs does it run on?',
+            a: 'macOS 14 Sonoma or later. Apple Silicon Macs get all three engines. Intel Macs run the Apple Speech engine (WhisperKit and Parakeet require Apple Silicon).',
           },
         ].map(item => (
           <details class="group rounded-xl border" style="border-color: var(--color-border); background-color: var(--color-bg);">
@@ -346,26 +161,15 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           </details>
         ))}
       </div>
+
+      <!-- Newsletter -->
+      <div class="mt-14 text-center">
+        <h3 class="text-lg font-bold mb-2" style="color: var(--color-text);">Want to hear when new features ship?</h3>
+        <p class="text-sm mb-6" style="color: var(--color-text-muted);">
+          Release notes, engineering stories, and a heads-up if Pro ever becomes real.
+        </p>
+        <NewsletterForm type="newsletter" buttonText="Subscribe" />
+      </div>
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  // Billing segmented control
-  const seg = document.getElementById('billing-seg');
-  const card = document.getElementById('pro-card');
-  const btns = seg?.querySelectorAll<HTMLButtonElement>('button');
-
-  btns?.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const period = btn.dataset.period;
-      if (!period) return;
-      btns.forEach(b => {
-        b.dataset.active = String(b.dataset.period === period);
-        b.setAttribute('aria-pressed', String(b.dataset.period === period));
-      });
-      card?.setAttribute('data-billing', period);
-    });
-  });
-
-</script>

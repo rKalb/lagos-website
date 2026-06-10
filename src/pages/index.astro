@@ -42,9 +42,9 @@ import NewsletterForm from '../components/NewsletterForm.astro';
   >
     <div class="mx-auto max-w-3xl text-center">
 
-      <!-- Beta promo badge -->
+      <!-- Release badge -->
       <a
-        href="/pricing"
+        href="/changelog"
         class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-8 border no-underline transition-opacity hover:opacity-80"
         style="background-color: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); color: #059669;"
       >
@@ -53,7 +53,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           style="background-color: #10b981;"
           aria-hidden="true"
         ></span>
-        Join the beta by March 31 — get 2 years of Pro free
+        New in v1.4 — instant capture, AirPods stay hi-fi, music ducks &amp; restores
         <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" class="opacity-50">
           <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
@@ -67,7 +67,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
       </h1>
 
       <p class="text-xl leading-relaxed mb-10 mx-auto max-w-lg" style="color: var(--color-text-muted);">
-        Instant voice dictation for Mac. Hold a keyboard shortcut, speak, release — your words appear wherever you're typing.
+        Hold ⌘⌃, speak, release — your words appear wherever you're typing. Free, private dictation for your Mac. Nothing leaves your Mac.
       </p>
 
       <div class="flex justify-center mb-16">
@@ -195,24 +195,24 @@ import NewsletterForm from '../components/NewsletterForm.astro';
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
           {
-            title: 'Instant, zero setup',
-            desc: 'Uses Apple\'s built-in Speech framework. Works the moment you install it — no API keys, no configuration.',
+            title: 'Starts before you do',
+            desc: 'A ~0.45 s pre-roll buffer recovers speech from before you even finished pressing the keys. Your words appear before the cue finishes — first syllables never get clipped.',
             icon: `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`,
           },
           {
-            title: 'Local AI accuracy',
-            desc: 'WhisperKit runs entirely on your device via Core ML. As low as ~1% word error rate with the Turbo model. 100% private — no audio leaves your Mac.',
-            icon: `<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.75" fill="none"/><path d="M9 9h6M9 12h6M9 15h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>`,
+            title: 'AirPods stay hi-fi',
+            desc: 'Lagos records from the built-in mic by default, so your AirPods never drop into low-quality HFP mode. No more music turning to mud when you dictate.',
+            icon: `<path d="M4 12a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-1a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h3M4 12v5a2 2 0 0 0 2 2h1a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`,
           },
           {
-            title: 'Privacy first',
-            desc: 'Audio is never stored on disk. Local engines stay off the network entirely. You choose exactly where your voice goes.',
+            title: 'Music ducks, then restores',
+            desc: 'While you speak, your audio gently lowers instead of stopping. Release the keys and your music comes right back — every time. Or choose pause, or leave it alone.',
+            icon: `<path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`,
+          },
+          {
+            title: '100% on-device',
+            desc: 'Default engines make zero network calls. Audio is never written to disk, no account exists, and there are no word quotas. Your voice is not a payload.',
             icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`,
-          },
-          {
-            title: 'Multi-language',
-            desc: 'Auto-detect or choose from 12 built-in languages including English, Spanish, French, German, Japanese, Chinese, and more.',
-            icon: `<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75" fill="none"/><path d="M2 12h20M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18" stroke="currentColor" stroke-width="1.75" fill="none"/>`,
           },
         ].map(f => (
           <div
@@ -238,9 +238,9 @@ import NewsletterForm from '../components/NewsletterForm.astro';
   <section class="py-28 px-4 sm:px-6 lg:px-8" style="background-color: var(--color-surface);">
     <div class="mx-auto max-w-3xl">
       <div class="text-center mb-14">
-        <h2 class="text-4xl font-bold mb-4" style="color: var(--color-text); letter-spacing: -0.02em;">Your level of control</h2>
+        <h2 class="text-4xl font-bold mb-4" style="color: var(--color-text); letter-spacing: -0.02em;">Three engines. All free. All on-device.</h2>
         <p class="text-lg" style="color: var(--color-text-muted);">
-          From instant built-in to cloud-grade. Start where you are, upgrade when you want.
+          Start with zero setup, upgrade accuracy when you want. Audio never leaves your Mac with any of them.
         </p>
       </div>
 
@@ -252,7 +252,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
             badge: 'Built-in · Zero setup',
             badgeBg: '#d1fae5',
             badgeColor: '#065f46',
-            desc: 'macOS Speech Recognition. Instant transcription, works offline, ~8% word error rate.',
+            desc: 'macOS Speech Recognition. Instant transcription, works offline, no download. The only engine for Intel Macs.',
             accentBg: '#d1fae5',
             accentColor: '#059669',
           },
@@ -262,29 +262,19 @@ import NewsletterForm from '../components/NewsletterForm.astro';
             badge: 'Recommended',
             badgeBg: '#fef3c7',
             badgeColor: '#92400e',
-            desc: 'OpenAI Whisper on-device via Core ML. Two models: Standard (~150 MB, ~5% WER) or Turbo (~1.5 GB, ~1% WER). Completely private.',
+            desc: 'OpenAI Whisper on-device via Core ML. Two models: Standard (~150 MB, ~5% WER) or Turbo (~1.5 GB, ~1% WER). Completely private. Apple Silicon.',
             accentBg: '#fef3c7',
             accentColor: '#d97706',
           },
           {
             level: '3',
-            name: 'Lagos Pro Cloud',
-            badge: 'Coming soon',
+            name: 'Parakeet',
+            badge: 'Beta · Optional',
             badgeBg: '#e0e7ff',
             badgeColor: '#3730a3',
-            desc: 'Managed cloud transcription. No API keys required. Best accuracy, zero model management.',
+            desc: 'NVIDIA\'s Parakeet TDT v3, running fully on-device. Faster and more accurate than Whisper large-v3-turbo for English. Opt-in ~2.4 GB download, Apple Silicon.',
             accentBg: '#e0e7ff',
             accentColor: '#4f46e5',
-          },
-          {
-            level: '4',
-            name: 'Bring Your Own Key',
-            badge: 'Power users',
-            badgeBg: 'var(--color-warm-200)',
-            badgeColor: 'var(--color-warm-700)',
-            desc: 'Connect OpenAI, Deepgram, AssemblyAI, Google Cloud, or Wispr Flow. Full control over quality and cost.',
-            accentBg: 'var(--color-warm-200)',
-            accentColor: 'var(--color-warm-700)',
           },
         ].map(e => (
           <div
@@ -355,9 +345,9 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           <ul class="space-y-3" aria-label="Accessibility features">
             {[
               'Works in any text field, any app, system-wide',
-              'No hand movement required after shortcut press',
+              'Double-tap to lock — dictate hands-free for as long as you need',
               'Customizable modifier keys to match your setup',
-              'Optional floating recording indicator',
+              'Free forever — accessibility should not cost $15/month',
             ].map(item => (
               <li class="flex items-start gap-3 text-sm" style="color: var(--color-text-muted);">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5" aria-hidden="true">
@@ -389,10 +379,10 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           </p>
           <ul class="space-y-3" aria-label="Developer features">
             {[
-              'AI cleanup removes filler words and fixes grammar',
+              'Instant start — ~0.45 s pre-roll never clips your first word',
               'Full transcription history with full-text search',
               'Works with Cursor, VS Code, Claude, ChatGPT',
-              'BYOK for full control over quality and cost',
+              'Pick your engine — Apple Speech, Whisper, or Parakeet',
             ].map(item => (
               <li class="flex items-start gap-3 text-sm" style="color: var(--color-text-muted);">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5" aria-hidden="true">
@@ -404,6 +394,93 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Comparison ── -->
+  <section class="py-28 px-4 sm:px-6 lg:px-8" style="background-color: var(--color-surface);">
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4" style="color: var(--color-text); letter-spacing: -0.02em;">Every alternative makes you trade something</h2>
+        <p class="text-lg max-w-2xl mx-auto" style="color: var(--color-text-muted);">
+          Pay monthly, send your voice to a server, or settle for a gated free tier. Lagos refuses all three trades.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border" style="border-color: var(--color-border); background-color: var(--color-bg);">
+        <table class="w-full text-sm" style="border-collapse: collapse; min-width: 720px;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <th class="text-left p-4 font-semibold" style="color: var(--color-text-muted);"></th>
+              <th class="text-left p-4 font-bold" style="color: var(--color-warm-900); background-color: var(--color-warm-200);">Lagos</th>
+              <th class="text-left p-4 font-semibold" style="color: var(--color-text);">Wispr Flow</th>
+              <th class="text-left p-4 font-semibold" style="color: var(--color-text);">VoiceInk</th>
+              <th class="text-left p-4 font-semibold" style="color: var(--color-text);">Superwhisper</th>
+              <th class="text-left p-4 font-semibold" style="color: var(--color-text);">MacWhisper</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--color-text-muted);">
+            {[
+              {
+                row: 'Price',
+                lagos: 'Free',
+                wispr: '$15/mo ($12/mo annual)',
+                voiceink: '$25–49 one-time',
+                superwhisper: '$8.49/mo · $84.99/yr · $249.99 lifetime',
+                macwhisper: '€59 one-time · $6.99/mo App Store',
+              },
+              {
+                row: 'Free tier',
+                lagos: 'The whole product — every local engine',
+                wispr: 'Capped at 2,000 words/week',
+                voiceink: 'Free only if you compile it yourself',
+                superwhisper: 'Best local models paywalled',
+                macwhisper: 'Limited',
+              },
+              {
+                row: 'Where your audio goes',
+                lagos: 'Stays on your Mac',
+                wispr: 'Their servers — cloud-only',
+                voiceink: 'On-device',
+                superwhisper: 'On-device or cloud',
+                macwhisper: 'On-device',
+              },
+              {
+                row: 'Account required',
+                lagos: 'Never',
+                wispr: 'Yes',
+                voiceink: 'License key',
+                superwhisper: 'For Pro',
+                macwhisper: 'No',
+              },
+              {
+                row: 'Built for',
+                lagos: 'Live dictation anywhere you type',
+                wispr: 'Live dictation',
+                voiceink: 'Live dictation',
+                superwhisper: 'Dictation + files',
+                macwhisper: 'Transcribing files & meetings',
+              },
+            ].map(r => (
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <td class="p-4 font-semibold" style="color: var(--color-text);">{r.row}</td>
+                <td class="p-4 font-medium" style="color: var(--color-warm-900); background-color: var(--color-warm-200);">{r.lagos}</td>
+                <td class="p-4">{r.wispr}</td>
+                <td class="p-4">{r.voiceink}</td>
+                <td class="p-4">{r.superwhisper}</td>
+                <td class="p-4">{r.macwhisper}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm mt-6 max-w-3xl mx-auto text-center leading-relaxed" style="color: var(--color-text-muted);">
+        Honest caveat: VoiceInk, Wispr, and Superwhisper ship AI writing modes, a personal dictionary, and app-context awareness today — Lagos doesn't yet (they're on the roadmap). What Lagos won't trade away: the core hold → speak → paste loop is instant, private, reliable, and free.
+      </p>
+      <p class="text-xs mt-3 text-center" style="color: var(--color-text-muted);">
+        Competitor pricing from published vendor pricing pages, verified June 2026.
+      </p>
     </div>
   </section>
 
@@ -429,23 +506,20 @@ import NewsletterForm from '../components/NewsletterForm.astro';
     </div>
   </section>
 
-  <!-- ── Beta signup ── -->
+  <!-- ── Newsletter ── -->
   <section class="py-20 px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-lg text-center">
-      <div
-        class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4"
-        style="background-color: rgba(16,185,129,0.1); color: #059669;"
-      >
-        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background-color: #10b981;" aria-hidden="true"></span>
-        Limited time offer
-      </div>
       <h2 class="text-2xl font-bold mb-2" style="color: var(--color-text); letter-spacing: -0.02em;">
-        Join the beta — get 2 years of Pro free
+        Follow along
       </h2>
       <p class="text-sm mb-8" style="color: var(--color-text-muted);">
-        Everyone who joins the beta before March 31, 2026 gets Lagos Pro free for 2 years when it launches. No credit card required.
+        Get release notes and the occasional behind-the-scenes engineering story by email. Prefer feeds? There's a
+        <a href="https://github.com/rKalb/lagos-releases/releases.atom" style="color: var(--color-link);">release notes RSS feed</a> too.
       </p>
-      <NewsletterForm type="waitlist" buttonText="Join the beta" />
+      <NewsletterForm type="newsletter" buttonText="Subscribe" />
+      <p class="text-xs mt-8 leading-relaxed mx-auto max-w-md" style="color: var(--color-text-muted);">
+        <strong style="color: var(--color-text);">Our promise:</strong> everything that turns speech into text — capture, transcription, paste, history, every local engine — is free forever. Advanced AI writing features may become a one-time Pro purchase someday — never a subscription, and never your audio.
+      </p>
     </div>
   </section>
 

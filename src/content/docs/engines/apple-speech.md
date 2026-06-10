@@ -1,5 +1,5 @@
 ---
-title: Apple Speech (Level 1)
+title: Apple Speech
 description: Lagos's built-in transcription engine using macOS Speech Recognition. Instant, zero setup, fully offline.
 ---
 
@@ -32,5 +32,6 @@ Apple Speech supports the languages available in macOS's Speech Recognition sett
 - You want instant dictation with zero setup
 - Privacy matters and you want no downloads or API keys
 - You need quick notes where exact accuracy isn't critical
+- You're on an Intel Mac (Apple Speech is the engine for Intel; the local AI engines require Apple Silicon)
 
-For higher accuracy, consider [WhisperKit (Level 2)](/engines/whisperkit).
+For higher accuracy on Apple Silicon, consider [WhisperKit](/engines/whisperkit) or [Parakeet (Beta)](/engines/parakeet).

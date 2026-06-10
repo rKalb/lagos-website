@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const lastUpdated = 'February 26, 2026';
+const lastUpdated = 'June 10, 2026';
 ---
 
 <BaseLayout
@@ -23,42 +23,35 @@ const lastUpdated = 'February 26, 2026';
           <strong>Audio is never stored on disk.</strong> When you hold your shortcut to record, audio is captured in memory only. It is sent to the transcription engine you have selected and then immediately discarded.
         </p>
         <ul>
-          <li><strong>Apple Speech (Level 1):</strong> Audio is processed by macOS Speech Recognition. Apple's privacy policy applies. No audio leaves your device through Lagos.</li>
-          <li><strong>WhisperKit (Level 2):</strong> Audio is processed entirely on-device using Core ML. Nothing is ever sent to a server.</li>
-          <li><strong>Lagos Pro Cloud (Level 3 — coming soon):</strong> Audio is sent to Lagos servers for transcription. It is deleted immediately after transcription is complete. No audio is stored or retained.</li>
-          <li><strong>BYOK (Level 4):</strong> Audio is sent to your chosen third-party provider (OpenAI, Deepgram, AssemblyAI, Google Cloud, or Wispr Flow). That provider's privacy policy applies.</li>
+          <li><strong>Apple Speech:</strong> Audio is processed by macOS Speech Recognition. Apple's privacy policy applies. No audio leaves your device through Lagos.</li>
+          <li><strong>WhisperKit:</strong> Audio is processed entirely on-device using Core ML. Nothing is ever sent to a server.</li>
+          <li><strong>Parakeet (Beta):</strong> Audio is processed entirely on-device via FluidAudio/Core ML. Nothing is ever sent to a server.</li>
         </ul>
+        <p>
+          Every engine Lagos ships today is on-device. If optional cloud engines (e.g. bring-your-own-key providers) ship in the future, they will be strictly opt-in, clearly labeled, and this policy will be updated first.
+        </p>
 
         <h2>Transcription History</h2>
         <p>
           Transcribed text is saved locally to a SQLite database at <code>~/Library/Application Support/Lagos/history.db</code> on your device. This data never leaves your device unless you export it manually. You can delete your history at any time from Lagos settings.
         </p>
 
-        <h2>API Keys</h2>
+        <h2>Analytics &amp; Crash Reports</h2>
         <p>
-          API keys you enter for BYOK providers are stored exclusively in the macOS Keychain, encrypted by the operating system. They are never transmitted to Lagos servers.
-        </p>
-
-        <h2>Analytics</h2>
-        <p>
-          Lagos collects anonymous usage analytics via Firebase Analytics to understand which features are used and improve the app. This data is:
+          Lagos collects anonymous usage analytics and crash reports via Firebase (Analytics and Crashlytics) to understand which features are used and to fix bugs. This is <strong>on by default and disclosed during onboarding</strong>, with a single switch to turn it off: <strong>Settings → Privacy → "Send anonymous usage data"</strong>. This data is:
         </p>
         <ul>
-          <li>Anonymous — not linked to your identity</li>
-          <li>Aggregated — not individual transcription content</li>
-          <li>Limited to events like "recording started", "engine changed", "settings opened"</li>
-          <li>Never includes the content of your transcriptions</li>
+          <li>Anonymous — identified only by a random UUID, never linked to your identity, Apple ID, or any account</li>
+          <li>Limited to events like "recording started", "engine changed", "settings opened", plus crash stack traces</li>
+          <li><strong>Never</strong> your audio, and <strong>never</strong> the content of your transcriptions</li>
         </ul>
-        <p>Analytics can be disabled (see Settings → Privacy).</p>
-
-        <h2>Crash Reports</h2>
         <p>
-          If Lagos crashes, macOS may generate a crash report that can be shared with us via the standard macOS crash reporter dialog. Crash reports do not include audio or transcription content.
+          In-app feedback you choose to submit (Settings → Feedback) is sent to our database along with basic diagnostic info (app version, anonymized device ID) so we can act on it.
         </p>
 
-        <h2>Website Analytics</h2>
+        <h2>Website</h2>
         <p>
-          This website (trylagos.app) uses Firebase Analytics to understand page views and traffic patterns. No personally identifiable information is collected. Standard web analytics data (page views, referrers, device type) is anonymized.
+          This website (trylagos.app) runs no analytics or tracking scripts. Our hosting provider (Vercel) keeps standard, short-lived server access logs. If you choose to enter your email for release updates, it is stored with our email provider (Resend) solely to send you those updates — unsubscribe anytime, and we never sell or share it.
         </p>
 
         <h2>Contact</h2>

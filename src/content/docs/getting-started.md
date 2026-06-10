@@ -7,22 +7,23 @@ Lagos is a macOS menu bar app that converts your voice to text. Hold a keyboard 
 
 ## System Requirements
 
-- macOS 13 Ventura or later
+- macOS 14 Sonoma or later
 - Apple Silicon (M1+) or Intel Mac
+  - Intel Macs run the Apple Speech engine; WhisperKit and Parakeet require Apple Silicon
 - Microphone access
 
 ## Installation
 
-1. [Download Lagos](/features#download) — free, no account required
+1. [Download Lagos](/#download) — free, no account required
 2. Open the `.dmg` file and drag Lagos to your **Applications** folder
-3. Launch Lagos from Applications or Spotlight
+3. Launch Lagos from Applications or Spotlight — releases are Developer ID-signed and notarized by Apple, so it opens with a normal double-click
 
 ## First Launch
 
 When you first open Lagos, an onboarding wizard will guide you through:
 
 1. **Microphone permission** — Lagos needs mic access to record your voice
-2. **Accessibility permission** — required for Lagos to paste text into other apps
+2. **Accessibility permission** — required to detect your global shortcut and paste text into other apps (macOS may also ask for Input Monitoring for the global hotkey)
 3. **Test dictation** — try your first recording to confirm everything works
 
 Once permissions are granted, Lagos lives in your menu bar and is always ready.
@@ -38,16 +39,15 @@ That's it.
 
 ## Choosing a Transcription Engine
 
-Lagos supports four transcription levels:
+Lagos ships three engines — every one of them runs on your Mac:
 
-| Level | Engine | Accuracy | Privacy | Setup |
-|-------|--------|----------|---------|-------|
-| 1 | Apple Speech | ~8% WER | On-device | None |
-| 2 | WhisperKit | ~1–5% WER | On-device | Download model |
-| 3 | Lagos Pro Cloud | <1% WER | Cloud | Subscription (coming soon) |
-| 4 | BYOK | Varies | Depends | API key |
+| Engine | Accuracy | Download | Hardware |
+|--------|----------|----------|----------|
+| Apple Speech | ~8% WER | None — built in | Apple Silicon & Intel |
+| WhisperKit (Standard / Turbo) | ~5% / ~1% WER | ~150 MB / ~1.5 GB | Apple Silicon |
+| Parakeet (Beta) | Beats Whisper Turbo for English | ~2.4 GB, opt-in | Apple Silicon |
 
-We recommend starting with **Level 1 (Apple Speech)** — zero setup. When you want better accuracy, switch to **Level 2 (WhisperKit)** with one click.
+We recommend starting with **Apple Speech** — zero setup. When you want better accuracy, switch to **WhisperKit** with one click.
 
 See [Transcription Engines](/engines/apple-speech) for full details on each option.
 

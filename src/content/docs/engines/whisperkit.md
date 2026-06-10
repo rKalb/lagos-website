@@ -1,5 +1,5 @@
 ---
-title: WhisperKit — Local AI (Level 2)
+title: WhisperKit — Local AI
 description: OpenAI Whisper running on-device via Core ML. Cloud-grade accuracy with complete privacy.
 ---
 
@@ -46,7 +46,7 @@ WhisperKit supports **100+ languages** via the Whisper model's multilingual capa
 
 ## Hardware Requirements
 
-WhisperKit works on Apple Silicon (M1 and later). It also runs on Intel Macs but is significantly faster on Apple Silicon.
+WhisperKit requires Apple Silicon (M1 and later). On Intel Macs, use [Apple Speech](/engines/apple-speech).
 
 ## When to Use WhisperKit
 
@@ -54,3 +54,5 @@ WhisperKit works on Apple Silicon (M1 and later). It also runs on Intel Macs but
 - Privacy is important — no audio should leave your device
 - You're on a reliable internet connection for the one-time model download
 - You want full language support
+
+Want even better English accuracy and speed? Try [Parakeet (Beta)](/engines/parakeet).

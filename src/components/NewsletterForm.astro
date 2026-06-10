@@ -9,9 +9,9 @@ interface Props {
 
 const {
   type = 'newsletter',
-  label = type === 'waitlist' ? 'Join the Lagos Pro waitlist' : 'Stay in the loop',
+  label = type === 'waitlist' ? 'Get notified about new Lagos features' : 'Stay in the loop',
   placeholder = 'you@example.com',
-  buttonText = type === 'waitlist' ? 'Join waitlist' : 'Subscribe',
+  buttonText = type === 'waitlist' ? 'Notify me' : 'Subscribe',
   class: className = '',
 } = Astro.props;
 
@@ -80,7 +80,7 @@ const formId = `form-${type}-${Math.random().toString(36).slice(2, 7)}`;
         if (res.ok) {
           if (statusEl) {
             statusEl.textContent = formType === 'waitlist'
-              ? "You're in! You'll get 2 years of Lagos Pro free when it launches."
+              ? "You're on the list — we'll email you when it ships."
               : "You're subscribed. Thanks for following along!";
             statusEl.style.color = 'var(--color-accent-700)';
             statusEl.classList.remove('hidden');
@@ -97,7 +97,7 @@ const formId = `form-${type}-${Math.random().toString(36).slice(2, 7)}`;
         }
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = form.dataset.formType === 'waitlist' ? 'Join waitlist' : 'Subscribe';
+        submitBtn.textContent = form.dataset.formType === 'waitlist' ? 'Notify me' : 'Subscribe';
       }
     });
   });

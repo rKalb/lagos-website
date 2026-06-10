@@ -6,7 +6,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 
 <BaseLayout
   title="Features"
-  description="Lagos packs a full suite of voice dictation features: local AI engines, BYOK, transcription history, AI cleanup, multi-language support, and more."
+  description="Lagos packs a full suite of voice dictation features: instant capture with pre-roll, three on-device engines, searchable history, lock mode, and multi-language support."
 >
   <!-- Hero -->
   <section class="pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-center">
@@ -33,7 +33,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
             The entire workflow is a single gesture. Hold your modifier keys, speak naturally, release — Lagos transcribes and pastes directly into whatever you were typing in.
           </p>
           <ul class="space-y-2 text-sm" style="color: var(--color-text-muted);">
-            {['5 modifier key combinations to choose from', 'Works in any app — browser, terminal, IDE, anything', 'Clipboard preserved across paste operation', 'Visual recording indicator (pulsing menu bar icon)'].map(item => (
+            {['5 modifier key combinations to choose from', 'Works in any app — browser, terminal, IDE, anything', 'Double-tap to lock — continuous hands-free dictation', 'Clipboard preserved across paste operation', 'Visual recording indicator (pulsing menu bar icon)'].map(item => (
               <li class="flex items-start gap-2">
                 <span style="color: var(--color-accent-600);" aria-hidden="true">→</span>
                 {item}
@@ -65,10 +65,10 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
         <Card padding="lg" class="md:order-first">
           <div class="space-y-4">
             {[
-              { icon: '⚡', name: 'Apple Speech', wer: '~8% WER', type: 'Built-in' },
-              { icon: '🧠', name: 'WhisperKit', wer: '~1–5% WER', type: 'Local AI' },
-              { icon: '☁️', name: 'Lagos Pro Cloud', wer: '<1% WER', type: 'Coming soon' },
-              { icon: '🔑', name: 'BYOK', wer: 'Varies', type: 'Your key' },
+              { icon: '⚡', name: 'Apple Speech', wer: '~8% WER', type: 'Built-in · zero setup' },
+              { icon: '🧠', name: 'WhisperKit Standard', wer: '~5% WER', type: 'Local AI · ~150 MB' },
+              { icon: '🚀', name: 'WhisperKit Turbo', wer: '~1% WER', type: 'Local AI · ~1.5 GB' },
+              { icon: '🦜', name: 'Parakeet (Beta)', wer: 'Beats Turbo (EN)', type: 'Local AI · ~2.4 GB · opt-in' },
             ].map(e => (
               <div class="flex items-center gap-4 p-3 rounded-lg" style="background-color: var(--color-bg);">
                 <span class="text-2xl" aria-hidden="true">{e.icon}</span>
@@ -83,23 +83,23 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
         </Card>
         <div>
           <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">Transcription engines</span>
-          <h2 class="text-3xl font-bold mt-2 mb-4" style="color: var(--color-text);">You choose the accuracy/privacy trade-off</h2>
+          <h2 class="text-3xl font-bold mt-2 mb-4" style="color: var(--color-text);">You choose the engine — all of them on-device</h2>
           <p class="leading-relaxed mb-4" style="color: var(--color-text-muted);">
-            Lagos is the only dictation tool that lets you mix and match transcription engines. Start with Apple's built-in engine — no setup — then upgrade to WhisperKit's local AI model for cloud-quality accuracy that never leaves your device.
+            Start with Apple's built-in engine — no setup — then upgrade to WhisperKit's local AI for cloud-quality accuracy that never leaves your device. Want more? The optional Parakeet engine (NVIDIA Parakeet TDT v3, beta) beats Whisper large-v3-turbo on English accuracy and speed, still 100% on-device.
           </p>
           <a href="/getting-started#engines" class="text-sm font-medium">Learn about each engine →</a>
         </div>
       </div>
 
-      <!-- AI Cleanup + History -->
+      <!-- Instant capture + History -->
       <div class="grid md:grid-cols-2 gap-8">
         <div>
-          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">AI polish</span>
-          <h2 class="text-2xl font-bold mt-2 mb-3" style="color: var(--color-text);">Post-processing cleanup</h2>
+          <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">Instant capture</span>
+          <h2 class="text-2xl font-bold mt-2 mb-3" style="color: var(--color-text);">Your first word is never lost</h2>
           <p class="leading-relaxed mb-4 text-sm" style="color: var(--color-text-muted);">
-            Enable AI cleanup to automatically remove filler words ("um", "uh", "like"), fix punctuation, and polish grammar — using GPT-4o-mini on your own key or Lagos Pro.
+            Lagos keeps a rolling ~0.45 s pre-roll buffer, so speech from <em>before</em> you finished pressing the shortcut is recovered. Combined with a warm capture window, recording starts in tens of milliseconds — you can talk the instant you think.
           </p>
-          <p class="text-sm" style="color: var(--color-text-muted);">Bring your own OpenAI key, or leave it off entirely. Your choice.</p>
+          <p class="text-sm" style="color: var(--color-text-muted);">No "wait for the beep". No clipped first syllables.</p>
         </div>
         <div>
           <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">History</span>
@@ -116,12 +116,12 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
         <h2 class="text-3xl font-bold mb-10 text-center" style="color: var(--color-text);">And a whole lot more</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
+            { icon: '🎧', title: 'AirPods stay hi-fi', desc: 'Lagos prefers the built-in mic when your default input is Bluetooth, so AirPods never drop to low-quality HFP while you dictate.' },
+            { icon: '🎶', title: 'Music ducks, then restores', desc: 'Playback lowers while you speak and comes right back when you release. Prefer pause, or nothing at all? Your choice.' },
             { icon: '🌍', title: 'Multi-language', desc: 'Auto-detect or choose from 12 built-in languages. WhisperKit and Apple Speech both support major world languages.' },
-            { icon: '🔐', title: 'Keychain-stored secrets', desc: 'API keys are stored in macOS Keychain, encrypted at rest. Never in plain text.' },
             { icon: '🎵', title: 'Sound effects', desc: 'Optional audio cues for recording start, stop, and completion. Customizable sound packs.' },
             { icon: '📋', title: 'Clipboard preservation', desc: 'Lagos saves and restores your clipboard around every paste operation.' },
             { icon: '🚀', title: 'Launch at login', desc: 'Auto-start on login via SMAppService so Lagos is always ready when you are.' },
-            { icon: '🎙️', title: 'Noise-adaptive profiles', desc: 'Automatic environment detection adjusts transcription for quiet or noisy settings.' },
           ].map(f => (
             <Card>
               <div class="text-2xl mb-3" aria-hidden="true">{f.icon}</div>
@@ -131,6 +131,27 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           ))}
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Known limitations -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--color-text);">Known limitations (we'd rather you hear them from us)</h2>
+      <ul class="space-y-3 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+        {[
+          'No AI writing modes, personal dictionary, or app-context awareness yet — competitors have these today; they\'re next on our roadmap.',
+          'Intel Macs run the Apple Speech engine only. WhisperKit and Parakeet require Apple Silicon.',
+          'Parakeet is in beta: a ~2.4 GB optional download, English-strongest, Apple Silicon only.',
+          'No mobile app, no Windows — Lagos is macOS-only (14 Sonoma and later).',
+          'Anonymous usage analytics are on by default (never your audio or text) — one toggle in Settings → Privacy turns them off.',
+        ].map(item => (
+          <li class="flex items-start gap-2">
+            <span style="color: var(--color-accent-600);" aria-hidden="true">→</span>
+            {item}
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 

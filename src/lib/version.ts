@@ -44,6 +44,18 @@ export async function getLatestVersion(fallback = '1.3.9'): Promise<string> {
   }
 }
 
+/**
+ * Picks the canonical stable DMG asset from a release.
+ * Every release publishes a stable-named `Lagos.dmg` alongside the versioned
+ * beta DMG — prefer it so download links always point at the stable artifact.
+ */
+function pickDmg(assets?: RawRelease['assets']) {
+  return (
+    assets?.find((a) => a.name === 'Lagos.dmg') ??
+    assets?.find((a) => a.name.endsWith('.dmg'))
+  );
+}
+
 export interface GitHubRelease {
   version: string;
   tag: string;
@@ -68,7 +80,7 @@ export async function getAllReleases(): Promise<GitHubRelease[]> {
         title: r.name || `Lagos ${r.tag_name.replace(/^v/, '')}`,
         body: r.body || '',
         publishedAt: r.published_at,
-        dmgUrl: r.assets?.find((a) => a.name.endsWith('.dmg'))?.browser_download_url ?? '',
+        dmgUrl: pickDmg(r.assets)?.browser_download_url ?? '',
       }));
   } catch {
     return [];
@@ -84,8 +96,7 @@ export async function getLatestDownloadUrl(): Promise<string> {
     const releases = await fetchReleases();
     const latest = releases.find((r) => !r.prerelease && !r.draft);
     if (!latest) return '';
-    const dmg = latest.assets?.find((a) => a.name.endsWith('.dmg'));
-    return dmg?.browser_download_url ?? '';
+    return pickDmg(latest.assets)?.browser_download_url ?? '';
   } catch {
     return '';
   }

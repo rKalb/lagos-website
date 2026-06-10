@@ -39,7 +39,7 @@ const sizeClasses = {
 <div class={`download-gate ${className}`} data-download-url={downloadUrl}>
   <div class="download-gate-form flex flex-col gap-2">
     <p class="text-xs mb-1" style={hintColor}>
-      Enter your email to download — we'll keep you updated on new releases.
+      Want release notes by email? Leave your address — or skip straight to the download.
     </p>
     <div class="flex flex-col sm:flex-row gap-2">
       <input
@@ -63,6 +63,12 @@ const sizeClasses = {
       </button>
     </div>
     <p class="download-gate-error text-xs hidden" style="color: #dc2626;"></p>
+    <p class="text-xs" style={hintColor}>
+      <a href={downloadUrl} class="download-gate-skip underline" style="color: inherit;">
+        No thanks — just download
+      </a>
+      &nbsp;&bull;&nbsp; macOS 14+ &bull; Free, notarized, no account
+    </p>
   </div>
   <div class="download-gate-success flex flex-col items-start gap-2" style="display: none;">
     <a
@@ -78,7 +84,7 @@ const sizeClasses = {
       Download Lagos for Mac
     </a>
     <p class="text-xs" style={subtextColor}>
-      macOS 13 Ventura or later &bull; Apple Silicon &amp; Intel &bull; Free
+      macOS 14 Sonoma or later &bull; Apple Silicon &amp; Intel &bull; Free &bull; Notarized by Apple
     </p>
   </div>
 </div>

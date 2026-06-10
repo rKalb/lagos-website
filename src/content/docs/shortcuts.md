@@ -36,13 +36,13 @@ The event tap monitors:
 - **Key down** (both modifiers held) → starts recording
 - **Key up** (either modifier released) → stops recording and triggers transcription
 
+## Lock Mode (Hands-Free)
+
+Don't want to hold the keys for a long dictation? **Double-tap** the shortcut to lock recording on. Lagos keeps listening — speak as long as you like, hands completely free — then press the shortcut again to stop and transcribe. This is especially useful for accessibility setups and long-form dictation.
+
 ## Tips
 
-- Hold the keys before you start speaking — there's a very brief startup time
+- You don't need to wait after pressing the keys — Lagos keeps a ~0.45 s pre-roll buffer, so words spoken as you press (even slightly before) are captured
 - Speak clearly and at a natural pace; don't rush
 - Release both keys at the same time (or within ~100ms) for the best experience
 - The menu bar icon pulses red while recording so you always know when it's active
-
-## Hiding the Menu Bar Icon
-
-You can hide the menu bar icon entirely if you prefer a minimal setup. Enable this in Settings → Advanced → Hide menu bar icon. The shortcut still works — you just won't see the visual indicator.
