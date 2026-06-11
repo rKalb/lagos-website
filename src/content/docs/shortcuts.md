@@ -42,7 +42,7 @@ Don't want to hold the keys for a long dictation? **Double-tap** the shortcut to
 
 ## Tips
 
-- You don't need to wait after pressing the keys — Lagos keeps a ~0.45 s pre-roll buffer, so words spoken as you press (even slightly before) are captured
+- Speak as soon as you hear the start cue — it plays once capture is already rolling, so nothing is clipped. (Optional: enable "Keep microphone ready" in Settings for a ~0.45 s pre-roll that also catches words spoken as you press)
 - Speak clearly and at a natural pace; don't rush
 - Release both keys at the same time (or within ~100ms) for the best experience
 - The menu bar icon pulses red while recording so you always know when it's active

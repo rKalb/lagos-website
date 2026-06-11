@@ -196,7 +196,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
         {[
           {
             title: 'Starts before you do',
-            desc: 'A ~0.45 s pre-roll buffer recovers speech from before you even finished pressing the keys. Your words appear before the cue finishes — first syllables never get clipped.',
+            desc: 'Capture starts in ~50 ms and the cue plays once recording is already rolling — speak the instant you hear it and nothing is clipped. Opt in to keep-ready mode for sub-millisecond restarts with ~0.45 s pre-roll.',
             icon: `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`,
           },
           {
@@ -379,7 +379,7 @@ import NewsletterForm from '../components/NewsletterForm.astro';
           </p>
           <ul class="space-y-3" aria-label="Developer features">
             {[
-              'Instant start — ~0.45 s pre-roll never clips your first word',
+              'Instant start — the mic is on only while you record (pre-roll optional)',
               'Full transcription history with full-text search',
               'Works with Cursor, VS Code, Claude, ChatGPT',
               'Pick your engine — Apple Speech, Whisper, or Parakeet',

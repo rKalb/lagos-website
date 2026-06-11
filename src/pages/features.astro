@@ -6,7 +6,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
 
 <BaseLayout
   title="Features"
-  description="Lagos packs a full suite of voice dictation features: instant capture with pre-roll, three on-device engines, searchable history, lock mode, and multi-language support."
+  description="Lagos packs a full suite of voice dictation features: instant private capture, three on-device engines, searchable history, lock mode, and multi-language support."
 >
   <!-- Hero -->
   <section class="pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-center">
@@ -97,7 +97,7 @@ import EmailGatedDownload from '../components/EmailGatedDownload.astro';
           <span class="text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent-600);">Instant capture</span>
           <h2 class="text-2xl font-bold mt-2 mb-3" style="color: var(--color-text);">Your first word is never lost</h2>
           <p class="leading-relaxed mb-4 text-sm" style="color: var(--color-text-muted);">
-            Lagos keeps a rolling ~0.45 s pre-roll buffer, so speech from <em>before</em> you finished pressing the shortcut is recovered. Combined with a warm capture window, recording starts in tens of milliseconds — you can talk the instant you think.
+            By default the microphone is on <em>only while you record</em>: capture starts in ~50 ms and the cue plays once recording is rolling, so speak the moment you hear it. Prefer zero-latency chaining? Opt in to keep-ready mode — sub-millisecond restarts plus a ~0.45 s pre-roll buffer that recovers speech from before the keypress.
           </p>
           <p class="text-sm" style="color: var(--color-text-muted);">No "wait for the beep". No clipped first syllables.</p>
         </div>

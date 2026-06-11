@@ -49,7 +49,7 @@ Yes. WhisperKit supports 100+ languages. Apple Speech supports the languages in 
 
 ### Does dictation start instantly? I'm used to losing my first word.
 
-Yes — this is Lagos's home turf. Lagos keeps a warm capture window with a ~0.45 s pre-roll ring buffer, so even speech from slightly *before* your keypress is recovered. First syllables don't get clipped.
+Yes. By default the mic is on only while you record — capture starts in ~50 ms and the start cue plays once recording is already rolling, so speaking on the cue never clips. If you chain dictations rapidly, enable "Keep microphone ready" in Settings: restarts become sub-millisecond and a ~0.45 s pre-roll buffer recovers speech from slightly *before* the keypress.
 
 ### What is "hallucination filtering"?
 
